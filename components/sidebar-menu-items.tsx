@@ -16,8 +16,11 @@ export const SideBarMenuItems = ({ item }: { item: SideBarItems }) => {
                 <BsChevronRight className='ml-auto stroke-2 text-xs'/>
 
             </a>
-            <div>
-                
+            <div className='bg-violet-700 border-1-4'>
+                <div className='grid gap-y-2 px-10 py-3 leading-5'>
+
+                </div>
+
             </div>
         </div>
       ) : (
