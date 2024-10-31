@@ -1,16 +1,18 @@
-import Image from "next/image";
-import All from "@/components/clients/All";
+// app/page.js
+import { redirect } from 'next/navigation';
 
 export default function Home() {
-  return (
+  // Assuming you want to redirect to the dashboard or login based on auth status
+  const isAuthenticated = false; // Replace with your actual authentication check
 
-    <>
+  if (!isAuthenticated) {
+    redirect('/login'); // Redirect to login if not authenticated
+  }
+
+  return (
     <div>
       <h2>Administration Dashboard</h2>
-      <All/>
+      {/* Dashboard content goes here */}
     </div>
-    
-    </>
-    
   );
 }

@@ -1,0 +1,243 @@
+[
+    {
+        "clientId": 1,
+        "name": "Alice Johnson",
+        "nationality": "American",
+        "balance": 1200.50,
+        "dateCreated": "2023-01-15",
+        "status": "Idle"
+    },
+    {
+        "clientId": 2,
+        "name": "Bob Smith",
+        "nationality": "British",
+        "balance": 950.75,
+        "dateCreated": "2023-02-10",
+        "status": "Inactive"
+    },
+    {
+        "clientId": 3,
+        "name": "Carlos Garcia",
+        "nationality": "Mexican",
+        "balance": 300.00,
+        "dateCreated": "2023-03-05",
+        "status": "Active"
+    },
+    {
+        "clientId": 4,
+        "name": "Diana Lee",
+        "nationality": "Canadian",
+        "balance": 4500.00,
+        "dateCreated": "2023-04-20",
+        "status": "Active"
+    },
+    {
+        "clientId": 5,
+        "name": "Ethan Chen",
+        "nationality": "Chinese",
+        "balance": 700.25,
+        "dateCreated": "2023-05-30",
+        "status": "Inactive"
+    },
+    {
+        "clientId": 6,
+        "name": "Fiona O'Reilly",
+        "nationality": "Irish",
+        "balance": 800.10,
+        "dateCreated": "2023-06-15",
+        "status": "Idle"
+    },
+    {
+        "clientId": 7,
+        "name": "George Patel",
+        "nationality": "Indian",
+        "balance": 600.50,
+        "dateCreated": "2023-07-05",
+        "status": "Active"
+    },
+    {
+        "clientId": 8,
+        "name": "Hannah White",
+        "nationality": "Australian",
+        "balance": 2000.00,
+        "dateCreated": "2023-08-12",
+        "status": "Inactive"
+    },
+    {
+        "clientId": 9,
+        "name": "Ian Black",
+        "nationality": "South African",
+        "balance": 1200.00,
+        "dateCreated": "2023-09-01",
+        "status": "Active"
+    },
+    {
+        "clientId": 10,
+        "name": "Jasmine Brown",
+        "nationality": "New Zealander",
+        "balance": 1500.75,
+        "dateCreated": "2023-09-20",
+        "status": "Active"
+    },
+
+    {
+        "clientId": 11,
+        "name": "Alice Johnson",
+        "nationality": "American",
+        "balance": 1200.50,
+        "dateCreated": "2023-01-15",
+        "status": "Active"
+    },
+    {
+        "clientId": 12,
+        "name": "Bob Smith",
+        "nationality": "British",
+        "balance": 950.75,
+        "dateCreated": "2023-02-10",
+        "status": "Inactive"
+    },
+    {
+        "clientId": 13,
+        "name": "Carlos Garcia",
+        "nationality": "Mexican",
+        "balance": 300.00,
+        "dateCreated": "2023-03-05",
+        "status": "Active"
+    },
+    {
+        "clientId": 14,
+        "name": "Diana Lee",
+        "nationality": "Canadian",
+        "balance": 4500.00,
+        "dateCreated": "2023-04-20",
+        "status": "Active"
+    },
+    {
+        "clientId": 15,
+        "name": "Ethan Chen",
+        "nationality": "Chinese",
+        "balance": 700.25,
+        "dateCreated": "2023-05-30",
+        "status": "Inactive"
+    },
+    {
+        "clientId": 16,
+        "name": "Fiona O'Reilly",
+        "nationality": "Irish",
+        "balance": 800.10,
+        "dateCreated": "2023-06-15",
+        "status": "Active"
+    },
+    {
+        "clientId": 17,
+        "name": "George Patel",
+        "nationality": "Indian",
+        "balance": 600.50,
+        "dateCreated": "2023-07-05",
+        "status": "Active"
+    },
+    {
+        "clientId": 18,
+        "name": "Hannah White",
+        "nationality": "Australian",
+        "balance": 2000.00,
+        "dateCreated": "2023-08-12",
+        "status": "Inactive"
+    },
+    {
+        "clientId": 19,
+        "name": "Ian Black",
+        "nationality": "South African",
+        "balance": 1200.00,
+        "dateCreated": "2023-09-01",
+        "status": "Active"
+    },
+    {
+        "clientId": 20,
+        "name": "Jasmine Brown",
+        "nationality": "New Zealander",
+        "balance": 1500.75,
+        "dateCreated": "2023-09-20",
+        "status": "Active"
+    },
+    {
+        "clientId": 21,
+        "name": "Alice Johnson",
+        "nationality": "American",
+        "balance": 1200.50,
+        "dateCreated": "2023-01-15",
+        "status": "Active"
+    },
+    {
+        "clientId": 22,
+        "name": "Bob Smith",
+        "nationality": "British",
+        "balance": 950.75,
+        "dateCreated": "2023-02-10",
+        "status": "Inactive"
+    },
+    {
+        "clientId": 23,
+        "name": "Carlos Garcia",
+        "nationality": "Mexican",
+        "balance": 300.00,
+        "dateCreated": "2023-03-05",
+        "status": "Active"
+    },
+    {
+        "clientId": 24,
+        "name": "Diana Lee",
+        "nationality": "Canadian",
+        "balance": 4500.00,
+        "dateCreated": "2023-04-20",
+        "status": "Active"
+    },
+    {
+        "clientId": 25,
+        "name": "Ethan Chen",
+        "nationality": "Chinese",
+        "balance": 700.25,
+        "dateCreated": "2023-05-30",
+        "status": "Inactive"
+    },
+    {
+        "clientId": 26,
+        "name": "Fiona O'Reilly",
+        "nationality": "Irish",
+        "balance": 800.10,
+        "dateCreated": "2023-06-15",
+        "status": "Active"
+    },
+    {
+        "clientId": 27,
+        "name": "George Patel",
+        "nationality": "Indian",
+        "balance": 600.50,
+        "dateCreated": "2023-07-05",
+        "status": "Active"
+    },
+    {
+        "clientId": 28,
+        "name": "Hannah White",
+        "nationality": "Australian",
+        "balance": 2000.00,
+        "dateCreated": "2023-08-12",
+        "status": "Inactive"
+    },
+    {
+        "clientId": 29,
+        "name": "Ian Black",
+        "nationality": "South African",
+        "balance": 1200.00,
+        "dateCreated": "2023-09-01",
+        "status": "Active"
+    },
+    {
+        "clientId": 30,
+        "name": "Jasmine Brown",
+        "nationality": "New Zealander",
+        "balance": 1500.75,
+        "dateCreated": "2023-09-20",
+        "status": "Active"
+    }
+]
