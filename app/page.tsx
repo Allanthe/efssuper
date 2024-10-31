@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <div>
-      <h2>Administration Dashboard</h2>
+      <h2>Administration</h2>
       {/* Dashboard content goes here */}
     </div>
   );

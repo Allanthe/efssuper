@@ -18,7 +18,7 @@ import { SideBarItems } from "./types/types";
 
 export const SIDEBAR_ITEMS: SideBarItems[] = [
     {
-        title: "Dashboard",
+        title: "Home",
         path: "/",
         icon: <BsHouseDoor size={20} />
     },
