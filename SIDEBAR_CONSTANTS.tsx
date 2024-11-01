@@ -35,7 +35,15 @@ export const SIDEBAR_ITEMS: SideBarItems[] = [
     {
         title: "Business",
         path: "/business",
-        icon: <BsBoxSeam size={20} />  // Box icon for business
+        icon: <BsBoxSeam size={20} />,  // Box icon for business
+        submenu:true,
+        subMenuItems: [
+            {title: 'Wallets',path: '/business/all_w'},
+            {title: 'Add',path: '/business/add_w'},
+            {title: 'View',path: '/business/v_w'},
+            {title: 'Edit',path: '/business/edit_w'},
+            {title: 'Reset',path: '/business/reset_w'},
+        ]
     },
     {
         title: "Transactions",

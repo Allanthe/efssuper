@@ -1,0 +1,250 @@
+{
+    "clients": [
+      {
+        "personalIdentification": {
+          "fullName": "John Doe",
+          "dateOfBirth": "1990-01-01",
+          "nationality": "American",
+          "gender": "Male"
+        },
+        "identificationDocuments": {
+          "idType": "Passport",
+          "idNumber": "A12345678",
+          "expirationDate": "2030-01-01"
+        },
+        "addressVerification": {
+          "residentialAddress": "123 Main St, Anytown, USA",
+          "proofOfAddressDocument": "utilityBill.pdf"
+        },
+        "contactInformation": {
+          "phoneNumber": "+1-234-567-8901",
+          "emailAddress": "john.doe@example.com"
+        },
+        "financialInformation": {
+          "bankAccountDetails": {
+            "accountNumber": "987654321",
+            "bankName": "Sample Bank"
+          },
+          "sourceOfIncome": "Employment",
+          "employmentInformation": {
+            "employerName": "Tech Corp",
+            "jobTitle": "Software Engineer"
+          }
+        },
+        "riskAssessmentInformation": {
+          "purposeOfAccount": "Personal savings",
+          "expectedAccountActivity": "Monthly deposits, occasional withdrawals"
+        },
+        "digitalIdentityVerification": {
+          "biometricData": {
+            "facialRecognition": "facialData123",
+            "fingerprint": "fingerprintData123"
+          },
+          "deviceInformation": {
+            "ipAddress": "192.168.1.1",
+            "deviceID": "device12345"
+          }
+        },
+        "photo":  "/5.webp",
+        "status": "Approved",
+        "Date": "2023-09-20"
+      },
+      {
+        "personalIdentification": {
+          "fullName": "Jane Smith",
+          "dateOfBirth": "1985-05-15",
+          "nationality": "British",
+          "gender": "Female"
+        },
+        "identificationDocuments": {
+          "idType": "National ID",
+          "idNumber": "B98765432",
+          "expirationDate": "2025-05-15"
+        },
+        "addressVerification": {
+          "residentialAddress": "456 Elm St, Othertown, UK",
+          "proofOfAddressDocument": "bankStatement.pdf"
+        },
+        "contactInformation": {
+          "phoneNumber": "+44-123-456-7890",
+          "emailAddress": "jane.smith@example.com"
+        },
+        "financialInformation": {
+          "bankAccountDetails": {
+            "accountNumber": "123456789",
+            "bankName": "Another Bank"
+          },
+          "sourceOfIncome": "Self-employed",
+          "employmentInformation": {
+            "employerName": "Freelance",
+            "jobTitle": "Consultant"
+          }
+        },
+        "riskAssessmentInformation": {
+          "purposeOfAccount": "Business transactions",
+          "expectedAccountActivity": "Frequent deposits and withdrawals"
+        },
+        "digitalIdentityVerification": {
+          "biometricData": {
+            "facialRecognition": "facialData456",
+            "fingerprint": "fingerprintData456"
+          },
+          "deviceInformation": {
+            "ipAddress": "192.168.1.2",
+            "deviceID": "device67890"
+          }
+        },
+        "photo":  "/5.webp",
+        "status": "Pending",
+        "Date": "2023-09-20"
+      },
+      {
+        "personalIdentification": {
+          "fullName": "Alice Johnson",
+          "dateOfBirth": "1992-08-30",
+          "nationality": "Canadian",
+          "gender": "Female"
+        },
+        "identificationDocuments": {
+          "idType": "Driver's License",
+          "idNumber": "C1234567",
+          "expirationDate": "2028-08-30"
+        },
+        "addressVerification": {
+          "residentialAddress": "789 Pine St, Toronto, Canada",
+          "proofOfAddressDocument": "leaseAgreement.pdf"
+        },
+        "contactInformation": {
+          "phoneNumber": "+1-416-555-1234",
+          "emailAddress": "alice.johnson@example.com"
+        },
+        "financialInformation": {
+          "bankAccountDetails": {
+            "accountNumber": "456789123",
+            "bankName": "Maple Bank"
+          },
+          "sourceOfIncome": "Investment",
+          "employmentInformation": {
+            "employerName": "InvestCo",
+            "jobTitle": "Investor"
+          }
+        },
+        "riskAssessmentInformation": {
+          "purposeOfAccount": "Investments and savings",
+          "expectedAccountActivity": "Occasional deposits"
+        },
+        "digitalIdentityVerification": {
+          "biometricData": {
+            "facialRecognition": "facialData789",
+            "fingerprint": "fingerprintData789"
+          },
+          "deviceInformation": {
+            "ipAddress": "192.168.1.3",
+            "deviceID": "device13579"
+          }
+        },
+        "photo":  "/5.webp",
+        "status": "Rejected",
+        "Date": "2023-09-20"
+      },
+      {
+        "personalIdentification": {
+          "fullName": "Robert Brown",
+          "dateOfBirth": "1980-11-20",
+          "nationality": "Australian",
+          "gender": "Male"
+        },
+        "identificationDocuments": {
+          "idType": "Passport",
+          "idNumber": "D76543210",
+          "expirationDate": "2027-11-20"
+        },
+        "addressVerification": {
+          "residentialAddress": "321 Oak St, Sydney, Australia",
+          "proofOfAddressDocument": "electricityBill.pdf"
+        },
+        "contactInformation": {
+          "phoneNumber": "+61-2-9876-5432",
+          "emailAddress": "robert.brown@example.com"
+        },
+        "financialInformation": {
+          "bankAccountDetails": {
+            "accountNumber": "321654987",
+            "bankName": "Aussie Bank"
+          },
+          "sourceOfIncome": "Retirement",
+          "employmentInformation": {
+            "employerName": "N/A",
+            "jobTitle": "Retired"
+          }
+        },
+        "riskAssessmentInformation": {
+          "purposeOfAccount": "Retirement savings",
+          "expectedAccountActivity": "Monthly withdrawals"
+        },
+        "digitalIdentityVerification": {
+          "biometricData": {
+            "facialRecognition": "facialData234",
+            "fingerprint": "fingerprintData234"
+          },
+          "deviceInformation": {
+            "ipAddress": "192.168.1.4",
+            "deviceID": "device24680"
+          }
+        },
+        "photo":  "/5.webp",
+        "status": "Approved",
+        "Date": "2024-11-01"
+      },
+      {
+        "personalIdentification": {
+          "fullName": "Maria Garcia",
+          "dateOfBirth": "1995-04-12",
+          "nationality": "Mexican",
+          "gender": "Female"
+        },
+        "identificationDocuments": {
+          "idType": "National ID",
+          "idNumber": "E54321678",
+          "expirationDate": "2026-04-12"
+        },
+        "addressVerification": {
+          "residentialAddress": "654 Maple St, Mexico City, Mexico",
+          "proofOfAddressDocument": "rentalAgreement.pdf"
+        },
+        "contactInformation": {
+          "phoneNumber": "+52-55-1234-5678",
+          "emailAddress": "maria.garcia@example.com"
+        },
+        "financialInformation": {
+          "bankAccountDetails": {
+            "accountNumber": "987123456",
+            "bankName": "Mexican Bank"
+          },
+          "sourceOfIncome": "Employment",
+          "employmentInformation": {
+            "employerName": "Global Corp",
+            "jobTitle": "Marketing Manager"
+          }
+        },
+        "riskAssessmentInformation": {
+          "purposeOfAccount": "Salary deposits",
+          "expectedAccountActivity": "Regular deposits"
+        },
+        "digitalIdentityVerification": {
+          "biometricData": {
+            "facialRecognition": "facialData567",
+            "fingerprint": "fingerprintData567"
+          },
+          "deviceInformation": {
+            "ipAddress": "192.168.1.5",
+            "deviceID": "device13579"
+          }
+        },
+        "photo":  "/5.webp",
+        "status": "Pending",
+        "Date": "2024-11-01"
+      }
+    ]
+  }
+  

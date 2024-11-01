@@ -6,10 +6,10 @@ import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 export const SideBarMenuItems = ({ item,toggleCollpase }: { item: SideBarItems,toggleCollpase:boolean }) => {
-  const linkStyles = 'flex items-center min-h-[40px] h-full text-black py-2 px-4 hover:text-white rounded-md transition duration-200';
+  const linkStyles = 'flex items-center min-h-[50px] h-full text-white py-2 px-4 hover:text-violet-950 rounded-md transition duration-200';
   const ddlinkstyles = linkStyles;
   const activelinkstyles='text-white py-2 hover:text-white transition duratio-200'
-  const navbarmenudropdownitems = "text-black py-2 px-4 hover:text-blue transition duration-200"
+  const navbarmenudropdownitems = "text-white py-2 px-4 hover:text-violet-800 transition duration-200"
   const [subMenuOpen,setSubMenuOpen] = useState(false); 
   const toggleSubMenu =()=> {
     setSubMenuOpen(!subMenuOpen);

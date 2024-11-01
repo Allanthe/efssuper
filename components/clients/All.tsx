@@ -7,9 +7,9 @@ const All = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [filterStatus, setFilterStatus] = useState('All');
-  const [menuOpen, setMenuOpen] = useState(null);
+  const [filterBalance, setFilterBalance] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
-  const clientsPerPage = 9;
+  const clientsPerPage = 6;
   const [editClient, setEditClient] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -17,8 +17,14 @@ const All = () => {
     clients.filter(client => 
       (client.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
        client.clientId.toString().includes(searchTerm)) &&
-      (filterStatus === 'All' || client.status === filterStatus)
-    ), [searchTerm, filterStatus, clients]
+      (filterStatus === 'All' || client.status === filterStatus) &&
+      (filterBalance === 'All' || 
+        (filterBalance === '100' && client.balance >= 100 && client.balance < 500) ||
+        (filterBalance === '500' && client.balance >= 500 && client.balance < 1000) ||
+        (filterBalance === '1000' && client.balance >= 1000 && client.balance < 5000) ||
+        (filterBalance === '5000' && client.balance >= 5000 && client.balance < 10000) ||
+        (filterBalance === '10000' && client.balance >= 10000))
+    ), [searchTerm, filterStatus, filterBalance, clients]
   );
 
   const totalPages = Math.ceil(filteredData.length / clientsPerPage);
@@ -28,37 +34,12 @@ const All = () => {
     return filteredData.slice(startIndex, startIndex + clientsPerPage);
   }, [filteredData, currentPage]);
 
-  const handleActionClick = (clientId: number | React.SetStateAction<null>) => {
-    setMenuOpen(menuOpen === clientId ? null : clientId);
-  };
-
-  const handleAction = (action: string, clientId: number) => {
-    if (action === 'Delete') {
-      const confirmDelete = window.confirm(`Are you sure you want to delete client ${clientId}?`);
-      if (confirmDelete) {
-        setClients(clients.filter(client => client.clientId !== clientId));
-      }
-    } else if (action === 'Update') {
-      setEditClient(clients.find(client => client.clientId === clientId));
-      setIsModalOpen(true);
-    }
-    setMenuOpen(null);
-  };
-
-  const handleUpdate = (updatedClient: { clientId: number; }) => {
-    setClients(prevClients => prevClients.map(client => 
-      client.clientId === updatedClient.clientId ? updatedClient : client
-    ));
-    setIsModalOpen(false);
-    setEditClient(null);
-  };
-
-  const handlePageChange = (pageNumber: React.SetStateAction<number>) => {
+  const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
   const renderPagination = () => (
-    <div className="flex justify-center mt-4">
+    <div className="flex justify-end mt-4">
       {Array.from({ length: totalPages }, (_, index) => (
         <button 
           key={index + 1} 
@@ -70,9 +51,21 @@ const All = () => {
     </div>
   );
 
+  const handleAction = (action, clientId) => {
+    if (action === 'Block') {
+      setClients(prevClients => prevClients.map(client => 
+        client.clientId === clientId ? { ...client, status: 'Blocked' } : client
+      ));
+    } else if (action === 'Activate') {
+      setClients(prevClients => prevClients.map(client => 
+        client.clientId === clientId ? { ...client, status: 'Active' } : client
+      ));
+    }
+  };
+
   return (
     <div className="p-8 bg-gray-100 min-h-screen">
-      <h1 className="text-2xl font-bold mb-4">All Registered Clients</h1>
+      <h1 className="text-2xl font-bold mb-4 underline">Registered Clients</h1>
 
       {/* Search and Filter Bar */}
       <div className="flex items-center mb-4 space-x-4">
@@ -108,35 +101,44 @@ const All = () => {
           <option value="Idle">Idle</option>
           <option value="Closed">Closed</option>
         </select>
+
+        <select 
+          className="border p-2 rounded" 
+          value={filterBalance} 
+          onChange={(e) => setFilterBalance(e.target.value)}
+        >
+          <option value="All">All Balances</option>
+          <option value="100">100 - 499</option>
+          <option value="500">500 - 999</option>
+          <option value="1000">1000 - 4999</option>
+          <option value="5000">5000 - 9999</option>
+          <option value="10000">10000 and above</option>
+        </select>
       </div>
 
       {/* Modern Card Layout */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {currentClients.map(client => (
           <div key={client.clientId} className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 relative">
+            <img src={client.photo} alt={`${client.name}'s photo`} className="w-full h-32 object-cover rounded-t-lg mb-2" />
             <h2 className="font-bold text-lg">{client.name}</h2>
-            <p><strong>Client ID:</strong> {client.clientId}</p>
             <p><strong>Nationality:</strong> {client.nationality}</p>
+            <p><strong>Contact:</strong> {client.contact}</p>
+            <p><strong>Email:</strong> {client.email}</p>
             <p><strong>Balance:</strong> ${client.balance.toFixed(2)}</p>
-            <p><strong>Date Created:</strong> {new Date(client.dateCreated).toLocaleDateString()}</p>
-            <button 
-              onClick={() => handleActionClick(client.clientId)} 
-              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-sm px-1 py-0.5 rounded-full">
-              {/* Three-Dots Icon */}
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="h-4 w-4">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 15.75a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm0 4.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm0-10.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
-              </svg>
-            </button>
-            {menuOpen === client.clientId && (
-              <div className="absolute bg-white border border-gray-300 rounded mt-1 right-2">
-                <button className="block px-4 py-2 text-gray-700 hover:bg-gray-100" onClick={() => handleAction('Update', client.clientId)}>Update</button>
-                <button className="block px-4 py-2 text-gray-700 hover:bg-gray-100" onClick={() => handleAction('Delete', client.clientId)}>Delete</button>
-                <button className="block px-4 py-2 text-gray-700 hover:bg-gray-100" onClick={() => handleAction('Block', client.clientId)}>Block</button>
+
+            {/* Status Indicator and Action Buttons */}
+            <div className="flex justify-between items-center mt-4">
+              <div className={`h-3 w-3 rounded-full ${client.status === 'Active' ? 'bg-green-500' : client.status === 'Idle' ? 'bg-yellow-500' : 'bg-red-500'}`}></div>
+              <div className="flex space-x-2">
+                {client.status === 'Active' && (
+                  <button className="bg-red-500 text-white px-2 py-1 rounded" onClick={() => handleAction('Block', client.clientId)}>Block</button>
+                )}
+                {(client.status === 'Idle' || client.status === 'Blocked') && (
+                  <button className="bg-green-500 text-white px-2 py-1 rounded" onClick={() => handleAction('Activate', client.clientId)}>Activate</button>
+                )}
               </div>
-            )}
-            <p className={`mt-2 text-xs px-2 py-1 rounded-full text-white truncate ${client.status === 'Active' ? 'bg-green-500' : client.status === 'Idle' ? 'bg-yellow-500' : 'bg-red-500'}`} style={{ width: '100px' }}>
-              {client.status}
-            </p>
+            </div>
           </div>
         ))}
       </div>
@@ -159,11 +161,11 @@ const All = () => {
 const Modal = ({ client, onClose, onUpdate }) => {
   const [formData, setFormData] = useState(client);
 
-  const handleChange = (e: { target: { name: any; value: any; }; }) => {
+  const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     onUpdate(formData);
   };
@@ -187,7 +189,21 @@ const Modal = ({ client, onClose, onUpdate }) => {
             placeholder="Nationality"
             className="border p-2 w-full mb-4"
           />
-          <input 
+          <input
+            name="contact"
+            value={formData.contact}
+            onChange={handleChange}
+            placeholder="Contact"
+            className="border p-2 w-full mb-4"
+          />
+          <input
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Email"
+            className="border p-2 w-full mb-4"
+          />
+          <input
             name="balance"
             value={formData.balance}
             onChange={handleChange}
