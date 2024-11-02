@@ -2,12 +2,13 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { MdEmail, MdLock } from 'react-icons/md'; // Importing React Icons
+import { MdEmail, MdLock, MdVisibility, MdVisibilityOff } from 'react-icons/md'; // Importing React Icons
 
 const LoginPage = () => {
   const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordVisible, setPasswordVisible] = useState(false); // State for password visibility
 
   const hardCodedUsername = 'admin';
   const hardCodedPassword = 'admin';
@@ -33,17 +34,28 @@ const LoginPage = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             className="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:border-violet-600"
+            required
           />
         </div>
         <div className="relative mb-4">
           <MdLock className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
           <input
-            type="password"
+            type={passwordVisible ? 'text' : 'password'} // Toggle input type based on state
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:border-violet-600"
+            required
           />
+          {/* Eye Icon to toggle password visibility */}
+          <button
+            type="button"
+            onClick={() => setPasswordVisible(!passwordVisible)}
+            className="absolute right-3 top-3 text-gray-400"
+            aria-label={passwordVisible ? 'Hide password' : 'Show password'}
+          >
+            {passwordVisible ? <MdVisibilityOff /> : <MdVisibility />}
+          </button>
         </div>
         <div className="flex justify-between items-center mb-4">
           <label className="flex items-center">

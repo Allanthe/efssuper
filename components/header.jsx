@@ -1,19 +1,14 @@
 import classNames from 'classnames';
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import { BsList } from 'react-icons/bs';
 
-interface HeaderProps {
-  toggleCollapse: boolean;
-  setToggleCollapse: Dispatch<SetStateAction<boolean>>;
-}
-
-const Header: React.FC<HeaderProps> = ({ toggleCollapse, setToggleCollapse }) => {
+const Header = ({ toggleCollapse, setToggleCollapse, username }) => {
   const sideBarToggle = () => {
     setToggleCollapse(!toggleCollapse);
   };
 
   const headerStyle = classNames(
-    "fixed bg-violet-400 w-full z-0 shadow-sm shadow-slate-500/40 flex items-center h-16",
+    "fixed bg-violet-400 w-full z-0 shadow-sm shadow-slate-500/40 flex items-center h-16 pr-4", // Added pr-4 for right padding
     {
       "sm:pl-[20rem]": !toggleCollapse,  // Full padding when sidebar is expanded
       "sm:pl-[6.5rem]": toggleCollapse,   // Reduced padding when sidebar is collapsed
@@ -27,9 +22,12 @@ const Header: React.FC<HeaderProps> = ({ toggleCollapse, setToggleCollapse }) =>
       </button>
 
       <div className='order-1 sm:order-2 flex items-center justify-between w-full'>
-        <h1 className="text-xl font-bold">EVzone</h1>
-        <div className='h-10 w-10 rounded-full bg-violet-950 flex items-center justify-center text-center text-white'>
-          <span className='font-semibold text-sm'>SR</span>
+        <h1 className="text-xl font-bold text-white">EVzone</h1>
+        <div className='flex items-center'>
+          <span className='text-white mr-2 font-semibold'>{username}</span>
+          <div className='h-10 w-10 rounded-full bg-violet-950 flex items-center justify-center text-center text-white'>
+            <span className='font-semibold text-sm'>User</span> {/* Optional: Replace 'User' with actual initials if needed */}
+          </div>
         </div>
       </div>
     </header>

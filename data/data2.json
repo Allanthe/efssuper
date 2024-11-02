@@ -45,7 +45,7 @@
             "deviceID": "device12345"
           }
         },
-        "photo":  "/5.webp",
+        "photo":  "/11.webp",
         "status": "Approved",
         "Date": "2023-09-20"
       },
@@ -94,7 +94,7 @@
             "deviceID": "device67890"
           }
         },
-        "photo":  "/5.webp",
+        "photo":  "/2.webp",
         "status": "Pending",
         "Date": "2023-09-20"
       },
@@ -143,7 +143,7 @@
             "deviceID": "device13579"
           }
         },
-        "photo":  "/5.webp",
+        "photo":  "/8.webp",
         "status": "Rejected",
         "Date": "2023-09-20"
       },
@@ -192,7 +192,7 @@
             "deviceID": "device24680"
           }
         },
-        "photo":  "/5.webp",
+        "photo":  "/4.webp",
         "status": "Approved",
         "Date": "2024-11-01"
       },

@@ -12,7 +12,7 @@
     },
     {
         "clientId": 2,
-        "name": "Bob Smith",
+        "name": "Bob William",
         "nationality": "British",
         "balance": 950.75,
         "dateCreated": "2023-02-10",
@@ -34,7 +34,7 @@
     },
     {
         "clientId": 4,
-        "name": "Diana Lee",
+        "name": "Diana Biira",
         "nationality": "Canadian",
         "balance": 4500.00,
         "dateCreated": "2023-04-20",
@@ -45,7 +45,7 @@
     },
     {
         "clientId": 5,
-        "name": "Ethan Chen",
+        "name": "Okello Chen",
         "nationality": "Chinese",
         "balance": 700.25,
         "dateCreated": "2023-05-30",
@@ -56,7 +56,7 @@
     },
     {
         "clientId": 6,
-        "name": "Fiona O'Reilly",
+        "name": "Janet O'Reilly",
         "nationality": "Irish",
         "balance": 800.10,
         "dateCreated": "2023-06-15",
@@ -67,7 +67,7 @@
     },
     {
         "clientId": 7,
-        "name": "George Patel",
+        "name": "Jimmy Patel",
         "nationality": "Indian",
         "balance": 600.50,
         "dateCreated": "2023-07-05",
@@ -89,7 +89,7 @@
     },
     {
         "clientId": 9,
-        "name": "Ian Black",
+        "name": "Baker Black",
         "nationality": "South African",
         "balance": 1200.00,
         "dateCreated": "2023-09-01",
@@ -100,7 +100,7 @@
     },
     {
         "clientId": 10,
-        "name": "Jasmine Brown",
+        "name": "Allan Brown",
         "nationality": "New Zealander",
         "balance": 1500.75,
         "dateCreated": "2023-09-20",
@@ -111,7 +111,7 @@
     },
     {
         "clientId": 11,
-        "name": "Alice Johnson",
+        "name": "Napoleon Johnson",
         "nationality": "American",
         "balance": 1200.50,
         "dateCreated": "2023-01-15",
@@ -122,7 +122,7 @@
     },
     {
         "clientId": 12,
-        "name": "Bob Smith",
+        "name": "Bob Marley",
         "nationality": "British",
         "balance": 950.75,
         "dateCreated": "2023-02-10",
@@ -133,7 +133,7 @@
     },
     {
         "clientId": 13,
-        "name": "Carlos Garcia",
+        "name": "Carlos White",
         "nationality": "Mexican",
         "balance": 300.00,
         "dateCreated": "2023-03-05",
