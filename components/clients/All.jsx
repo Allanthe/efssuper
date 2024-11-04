@@ -1,19 +1,21 @@
-'use client';
-import React, { useState, useMemo } from 'react';
+'use client'
+import React, { useState, useMemo, useEffect } from 'react';
 import initialData from '../../data/data.json';
 import Select from 'react-select';
-import { FaFlag, FaEnvelope, FaPhone, FaWallet } from 'react-icons/fa';
+import { FaFlag, FaEnvelope, FaPhone, FaWallet, FaTrash } from 'react-icons/fa';
 
 const All = () => {
-  const [clients, setClients] = useState(initialData);
+  const [clients, setClients] = useState(() => {
+    // Load data from local storage or use initial data
+    const storedClients = localStorage.getItem('clients');
+    return storedClients ? JSON.parse(storedClients) : initialData;
+  });
   const [searchTerm, setSearchTerm] = useState('');
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [filterStatus, setFilterStatus] = useState(null);
   const [filterBalance, setFilterBalance] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const clientsPerPage = 8;
-  const [editClient, setEditClient] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
 
   // Options for status and balance
@@ -71,22 +73,46 @@ const All = () => {
     </div>
   );
 
-  const handleAction = (action, clientId) => {
-    const confirmed = window.confirm(`Are you sure you want to ${action === 'Block' ? 'block' : 'activate'} this client?`);
+  const updateLocalStorage = (updatedClients) => {
+    localStorage.setItem('clients', JSON.stringify(updatedClients));
+  };
+
+  const handleAction = (clientId) => {
+    const confirmed = window.confirm("Are you sure you want to change the status of this client?");
     if (!confirmed) return; // Exit if the user cancels
 
     setClients(prevClients => {
-      const updatedClients = prevClients.map(client => 
-        client.clientId === clientId ? { ...client, status: action === 'Block' ? 'Blocked' : 'Active' } : client
-      );
-      setAlertMessage(`Client has been successfully ${action === 'Block' ? 'blocked' : 'activated'}.`);
+      const updatedClients = prevClients.map(client => {
+        if (client.clientId === clientId) {
+          return {
+            ...client,
+            status: client.status === 'Active' ? 'Blocked' : 'Active' // Toggle status
+          };
+        }
+        return client;
+      });
+      updateLocalStorage(updatedClients);
+      setAlertMessage(`Client status updated successfully.`);
+      setTimeout(() => {
+        setAlertMessage('');
+      }, 3000);
       return updatedClients;
     });
+  };
 
-    // Automatically hide the alert after a few seconds
-    setTimeout(() => {
-      setAlertMessage('');
-    }, 3000);
+  const handleDelete = (clientId) => {
+    const confirmed = window.confirm("Are you sure you want to delete this client?");
+    if (!confirmed) return; // Exit if the user cancels
+
+    setClients(prevClients => {
+      const updatedClients = prevClients.filter(client => client.clientId !== clientId);
+      updateLocalStorage(updatedClients);
+      setAlertMessage(`Client deleted successfully.`);
+      setTimeout(() => {
+        setAlertMessage('');
+      }, 3000);
+      return updatedClients;
+    });
   };
 
   return (
@@ -143,39 +169,44 @@ const All = () => {
 
       {/* Modern Card Layout */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-  {currentClients.map(client => (
-    <div key={client.clientId} className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 relative">
-      <div className="flex justify-center mb-2"> {/* Center the image */}
-        <div className="relative w-24 h-24"> {/* Circular image container */}
-          <img 
-            src={client.photo} 
-            alt={`${client.name}'s photo`} 
-            className="absolute top-0 left-0 w-full h-full object-cover rounded-full" 
-          />
-        </div>
-      </div>
-      <h2 className="font-bold text-lg mt-2">{client.name}</h2>
-      <p className="flex items-center"><FaFlag className="mr-1 text-violet-950" /><span>{client.nationality}</span></p>
-      <p className="flex items-center"><FaPhone className="mr-1 text-violet-950" /><span>{client.contact}</span></p>
-      <p className="flex items-center"><FaEnvelope className="mr-1 text-violet-950" /><span>{client.email}</span></p>
-      <p className="flex items-center"><FaWallet className="mr-1 text-violet-950" /><span>${client.balance.toFixed(2)}</span></p>
+        {currentClients.map(client => (
+          <div key={client.clientId} className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 relative">
+            <div className="flex justify-center mb-2">
+              <div className="relative w-24 h-24">
+                <img 
+                  src={client.photo} 
+                  alt={`${client.name}'s photo`} 
+                  className="absolute top-0 left-0 w-full h-full object-cover rounded-full" 
+                />
+              </div>
+            </div>
+            <h2 className="font-bold text-lg mt-2">{client.name}</h2>
+            <p className="flex items-center"><FaFlag className="mr-1 text-violet-950" /><span>{client.nationality}</span></p>
+            <p className="flex items-center"><FaPhone className="mr-1 text-violet-950" /><span>{client.contact}</span></p>
+            <p className="flex items-center"><FaEnvelope className="mr-1 text-violet-950" /><span>{client.email}</span></p>
+            <p className="flex items-center"><FaWallet className="mr-1 text-violet-950" /><span>${client.balance.toFixed(2)}</span></p>
 
-      {/* Status Indicator and Action Buttons */}
-      <div className="flex justify-between items-center mt-2">
-        <span className={`text-sm font-semibold ${client.status === 'Active' ? 'text-green-600' : 'text-red-600'}`}>{client.status}</span>
-        <div className="space-x-2">
-          <button 
-            className="bg-blue-500 text-white px-2 py-1 rounded"
-            onClick={() => handleAction(client.status === 'Active' ? 'Block' : 'Activate', client.clientId)}
-          >
-            {client.status === 'Active' ? 'Block' : 'Activate'}
-          </button>
-        </div>
+            {/* Status Indicator and Action Buttons */}
+            <div className="flex justify-between items-center mt-2">
+              <span className={`text-sm font-semibold ${client.status === 'Active' ? 'text-green-600' : 'text-red-600'}`}>{client.status}</span>
+              <div className="space-x-2">
+                <button 
+                  className="bg-blue-500 text-white px-2 py-1 rounded"
+                  onClick={() => handleAction(client.clientId)}
+                >
+                  {client.status === 'Active' ? 'Block' : 'Activate'}
+                </button>
+                <button 
+                  className="bg-red-500 text-white px-2 py-1 rounded"
+                  onClick={() => handleDelete(client.clientId)}
+                >
+                  <FaTrash />
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
-    </div>
-  ))}
-</div>
-
 
       {renderPagination()}
     </div>
