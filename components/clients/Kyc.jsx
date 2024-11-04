@@ -46,6 +46,8 @@ const Kyc = () => {
     return matchesKycStatus && matchesName;
   });
 
+  const sortedClients = [...filteredClients].sort((a, b) => new Date(b.Date) - new Date(a.Date));
+
   return (
     <div className="p-8 bg-gray-100 min-h-screen">
       <h1 className="text-3xl font-bold mb-6">KYC Details</h1>
@@ -71,7 +73,7 @@ const Kyc = () => {
         </div>
       </div>
 
-     
+
 <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
   <thead>
     <tr>
@@ -83,8 +85,8 @@ const Kyc = () => {
     </tr>
   </thead>
   <tbody>
-    {filteredClients.length > 0 ? (
-      filteredClients.map((client) => {
+    {sortedClients.length > 0 ? (
+      sortedClients.map((client) => {
         const isNew = new Date(client.Date) >= new Date(new Date().setDate(new Date().getDate() - 7));
         return (
           <tr key={client.personalIdentification.fullName} className="hover:bg-gray-50 transition duration-200">
