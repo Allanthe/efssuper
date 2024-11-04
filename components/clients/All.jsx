@@ -143,36 +143,39 @@ const All = () => {
 
       {/* Modern Card Layout */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {currentClients.map(client => (
-          <div key={client.clientId} className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 relative">
-            <div className="relative w-full h-24">
-              <img 
-                src={client.photo} 
-                alt={`${client.name}'s photo`} 
-                className="absolute top-0 left-0 w-full h-full object-cover rounded-t-lg" 
-              />
-            </div>
-            <h2 className="font-bold text-lg mt-2">{client.name}</h2>
-            <p className="flex items-center"><FaFlag className="mr-1 text-violet-950" /><span>{client.nationality}</span></p>
-            <p className="flex items-center"><FaPhone className="mr-1 text-violet-950" /><span>{client.contact}</span></p>
-            <p className="flex items-center"><FaEnvelope className="mr-1 text-violet-950" /><span>{client.email}</span></p>
-            <p className="flex items-center"><FaWallet className="mr-1 text-violet-950" /><span>${client.balance.toFixed(2)}</span></p>
-
-            {/* Status Indicator and Action Buttons */}
-            <div className="flex justify-between items-center mt-2">
-              <span className={`text-sm font-semibold ${client.status === 'Active' ? 'text-green-600' : 'text-red-600'}`}>{client.status}</span>
-              <div className="space-x-2">
-                <button 
-                  className="bg-blue-500 text-white px-2 py-1 rounded"
-                  onClick={() => handleAction(client.status === 'Active' ? 'Block' : 'Activate', client.clientId)}
-                >
-                  {client.status === 'Active' ? 'Block' : 'Activate'}
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
+  {currentClients.map(client => (
+    <div key={client.clientId} className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 relative">
+      <div className="flex justify-center mb-2"> {/* Center the image */}
+        <div className="relative w-24 h-24"> {/* Circular image container */}
+          <img 
+            src={client.photo} 
+            alt={`${client.name}'s photo`} 
+            className="absolute top-0 left-0 w-full h-full object-cover rounded-full" 
+          />
+        </div>
       </div>
+      <h2 className="font-bold text-lg mt-2">{client.name}</h2>
+      <p className="flex items-center"><FaFlag className="mr-1 text-violet-950" /><span>{client.nationality}</span></p>
+      <p className="flex items-center"><FaPhone className="mr-1 text-violet-950" /><span>{client.contact}</span></p>
+      <p className="flex items-center"><FaEnvelope className="mr-1 text-violet-950" /><span>{client.email}</span></p>
+      <p className="flex items-center"><FaWallet className="mr-1 text-violet-950" /><span>${client.balance.toFixed(2)}</span></p>
+
+      {/* Status Indicator and Action Buttons */}
+      <div className="flex justify-between items-center mt-2">
+        <span className={`text-sm font-semibold ${client.status === 'Active' ? 'text-green-600' : 'text-red-600'}`}>{client.status}</span>
+        <div className="space-x-2">
+          <button 
+            className="bg-blue-500 text-white px-2 py-1 rounded"
+            onClick={() => handleAction(client.status === 'Active' ? 'Block' : 'Activate', client.clientId)}
+          >
+            {client.status === 'Active' ? 'Block' : 'Activate'}
+          </button>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
 
       {renderPagination()}
     </div>

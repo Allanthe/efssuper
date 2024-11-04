@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import kycData from '../../data/data2.json'; // Adjust the path to your JSON data file
-import { FaSearch, FaEye, FaTimes } from 'react-icons/fa'; // Import search, view, and close icons
+import { FaSearch, FaEye, FaTimes,FaCheckCircle, FaTimesCircle, FaSpinner } from 'react-icons/fa'; // Import search, view, and close icons
 import Select from 'react-select';
 
 const Kyc = () => {
@@ -71,46 +71,55 @@ const Kyc = () => {
         </div>
       </div>
 
-      <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
-        <thead>
-          <tr>
-            <th className="py-3 px-6 border-b text-left">Image</th>
-            <th className="py-3 px-6 border-b text-left">Full Name</th>
-            <th className="py-3 px-6 border-b text-left">Status</th>
-            <th className="py-3 px-6 border-b text-left">Date</th>
-            <th className="py-3 px-6 border-b text-left">Actions</th>
+     
+<table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
+  <thead>
+    <tr>
+      <th className="py-3 px-6 border-b text-left">Image</th>
+      <th className="py-3 px-6 border-b text-left">Full Name</th>
+      <th className="py-3 px-6 border-b text-left">Status</th>
+      <th className="py-3 px-6 border-b text-left">Date</th>
+      <th className="py-3 px-6 border-b text-left">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {filteredClients.length > 0 ? (
+      filteredClients.map((client) => {
+        const isNew = new Date(client.Date) >= new Date(new Date().setDate(new Date().getDate() - 7));
+        return (
+          <tr key={client.personalIdentification.fullName} className="hover:bg-gray-50 transition duration-200">
+            <td className="py-2 px-6 border-b">
+              <img src={client.photo} alt={client.personalIdentification.fullName} className="w-14 h-14 rounded-full border-2 border-violet-500" />
+            </td>
+            <td className="py-2 px-6 border-b flex items-center">
+              {client.personalIdentification.fullName}
+              {isNew && <span className="ml-2 text-sm text-green-500 bg-green-100 rounded-full px-2">New</span>}
+            </td>
+            <td className="py-2 px-6 border-b">
+              <div className="flex items-center">
+                {client.status === 'Approved' && <FaCheckCircle className="text-green-500 mr-1" />}
+                {client.status === 'Pending' && <FaSpinner className="text-yellow-500 animate-spin mr-1" />}
+                {client.status === 'Rejected' && <FaTimesCircle className="text-red-500 mr-1" />}
+                <span>{client.status}</span>
+              </div>
+            </td>
+            <td className="py-2 px-6 border-b">{client.Date}</td>
+            <td className="py-2 px-6 border-b">
+              <button onClick={() => handleOpenModal(client)} className="text-blue-600 hover:underline">
+                <FaEye />
+              </button>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          {filteredClients.length > 0 ? (
-            filteredClients.map((client) => {
-              const isNew = new Date(client.Date) >= new Date(new Date().setDate(new Date().getDate() - 7));
-              return (
-                <tr key={client.personalIdentification.fullName} className="hover:bg-gray-50 transition duration-200">
-                  <td className="py-2 px-6 border-b">
-                    <img src={client.photo} alt={client.personalIdentification.fullName} className="w-14 h-14 rounded-full border-2 border-violet-500" />
-                  </td>
-                  <td className="py-2 px-6 border-b flex items-center">
-                    {client.personalIdentification.fullName}
-                    {isNew && <span className="ml-2 text-sm text-green-500 bg-green-100 rounded-full px-2">New</span>}
-                  </td>
-                  <td className="py-2 px-6 border-b">{client.status}</td>
-                  <td className="py-2 px-6 border-b">{client.Date}</td>
-                  <td className="py-2 px-6 border-b">
-                    <button onClick={() => handleOpenModal(client)} className="text-blue-600 hover:underline">
-                      <FaEye />
-                    </button>
-                  </td>
-                </tr>
-              );
-            })
-          ) : (
-            <tr>
-              <td colSpan={5} className="py-2 px-6 border-b text-center">No matching records found.</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+        );
+      })
+    ) : (
+      <tr>
+        <td colSpan={5} className="py-2 px-6 border-b text-center">No matching records found.</td>
+      </tr>
+    )}
+  </tbody>
+</table>
+
 
       {/* Modal for Client Details */}
       {isModalOpen && selectedClient && (
