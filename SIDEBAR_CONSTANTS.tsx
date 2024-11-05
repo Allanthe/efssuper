@@ -26,6 +26,15 @@ export const SIDEBAR_ITEMS = [
         icon: <BsHouseDoor size={20} />
     },
     {
+        title: "KYC",
+        path: "/kyc",
+        icon: <FaUserShield size={20} />, // Unique icon for KYC
+        submenu: true,
+        subMenuItems: [
+            { title: 'KYC Applications', path: '/kyc/kyc_all' }
+        ]
+    },
+    {
         title: "Client's Level",
         path: "/client",
         icon: <BsFillPersonFill size={20} />,
@@ -55,15 +64,7 @@ export const SIDEBAR_ITEMS = [
             { title: 'Add', path: '/enterprise/add_w' },
         ]
     },
-    {
-        title: "KYC",
-        path: "/kyc",
-        icon: <FaUserShield size={20} />, // Unique icon for KYC
-        submenu: true,
-        subMenuItems: [
-            { title: 'KYC Applications', path: '/kyc/kyc_all' }
-        ]
-    },
+    
     {
         title: "Transactions",
         path: "/transaction",
