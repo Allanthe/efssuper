@@ -10,7 +10,7 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ toggleCollapse }) => {
   const asideStyle = classNames(
-    "fixed bg-violet-500 text-gray-500 z-50 h-full shadow-lg shadow-gray-900/20 transition duration-300 ease-in-out",
+    "fixed bg-violet-800 text-gray-500 z-50 h-full shadow-lg shadow-gray-900/20 transition duration-300 ease-in-out",
     {
       "sm:w-[5.4rem] sm:left-0 left-[100%]": toggleCollapse,
       "w-[20rem]": !toggleCollapse,

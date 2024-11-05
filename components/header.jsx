@@ -24,7 +24,7 @@ const Header = ({ toggleCollapse, setToggleCollapse, username }) => {
   };
 
   const headerStyle = classNames(
-    "fixed bg-violet-600 w-full z-0 shadow-sm shadow-slate-500/40 flex items-center h-16 pr-4 transparent", 
+    "fixed bg-violet-700 w-full z-0 shadow-sm shadow-slate-500/40 flex items-center h-16 pr-4 transparent", 
     {
       "sm:pl-[20rem]": !toggleCollapse,  // Full padding when sidebar is expanded
       "sm:pl-[6.5rem]": toggleCollapse,   // Reduced padding when sidebar is collapsed
