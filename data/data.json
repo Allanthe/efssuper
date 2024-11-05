@@ -28,7 +28,7 @@
         "balance": 300.00,
         "dateCreated": "2023-03-05",
         "status": "Active",
-        "photo":  "/3.webp",
+        "photo":  "/p1.webp",
         "email": "carlos.garcia@example.com",
         "contact": "+52-55-1234-5678"
     },
@@ -39,7 +39,7 @@
         "balance": 4500.00,
         "dateCreated": "2023-04-20",
         "status": "Active",
-        "photo":  "/3.webp",
+        "photo":  "/p2.webp",
         "email": "diana.lee@example.com",
         "contact": "+1-416-555-0123"
     },
@@ -50,7 +50,7 @@
         "balance": 700.25,
         "dateCreated": "2023-05-30",
         "status": "Inactive",
-        "photo":  "/4.webp",
+        "photo":  "/p3.webp",
         "email": "ethan.chen@example.com",
         "contact": "+86-10-1234-5678"
     },
@@ -61,7 +61,7 @@
         "balance": 800.10,
         "dateCreated": "2023-06-15",
         "status": "Idle",
-        "photo":  "/1.webp",
+        "photo":  "/p3.webp",
         "email": "fiona.oreilly@example.com",
         "contact": "+353-1-234-5678"
     },
@@ -105,7 +105,7 @@
         "balance": 1500.75,
         "dateCreated": "2023-09-20",
         "status": "Active",
-        "photo":  "/1.webp",
+        "photo":  "/p5.webp",
         "email": "jasmine.brown@example.com",
         "contact": "+64-9-123-4567"
     },
@@ -116,7 +116,7 @@
         "balance": 1200.50,
         "dateCreated": "2023-01-15",
         "status": "Active",
-        "photo": "/1.webp",
+        "photo": "/p6.webp",
         "email": "alice.johnson@example.com",
         "contact": "+1-555-0101"
     },
@@ -127,7 +127,7 @@
         "balance": 950.75,
         "dateCreated": "2023-02-10",
         "status": "Inactive",
-        "photo": "/1.webp",
+        "photo": "/p7.webp",
         "email": "bob.smith@example.com",
         "contact": "+44-20-7946-0958"
     },
@@ -138,7 +138,7 @@
         "balance": 300.00,
         "dateCreated": "2023-03-05",
         "status": "Active",
-        "photo": "/1.webp",
+        "photo": "/p8.webp",
         "email": "carlos.garcia@example.com",
         "contact": "+52-55-1234-5678"
     },
@@ -149,7 +149,7 @@
         "balance": 4500.00,
         "dateCreated": "2023-04-20",
         "status": "Active",
-        "photo":  "/1.webp",
+        "photo":  "/p9.webp",
         "email": "diana.lee@example.com",
         "contact": "+1-416-555-0123"
     },

@@ -1,54 +1,73 @@
-
 import { 
     BsEnvelope, 
     BsGear, 
     BsHouseDoor, 
     BsKanban, 
     BsQuestionCircle, 
-    BsBoxSeam, 
     BsFillBellFill, 
     BsFillLockFill, 
     BsFillCreditCard2BackFill, 
     BsFillPersonFill, 
     BsFillFileEarmarkTextFill, 
-    BsFillWalletFill 
+    BsFillWalletFill
 } from "react-icons/bs";
-import { SideBarItems } from "./types/types";
+import { 
+    FaBriefcase, 
+    FaIndustry, 
+    FaUserShield 
+} from "react-icons/fa"; // Correct import for Fa icons
+import { BsBoxSeam } from 'react-icons/bs';
 
-
-export const SIDEBAR_ITEMS: SideBarItems[] = [
+// Define SIDEBAR_ITEMS as a simple array of objects
+export const SIDEBAR_ITEMS = [
     {
         title: "Home",
         path: "/",
         icon: <BsHouseDoor size={20} />
     },
     {
-        title: "Clients",
+        title: "Client's Level",
         path: "/client",
         icon: <BsFillPersonFill size={20} />,
         submenu: true,
         subMenuItems: [
-            { title: 'All', path: '/client/all' }, // Link to the All Clients page
-            { title: 'KYC', path: '/client/kyc' }
+            { title: 'Clients', path: '/client/all' },
+            { title: 'Agents', path: '/client/agent_all' },
         ]
     },
     {
         title: "Business",
         path: "/business",
-        icon: <BsBoxSeam size={20} />,  // Box icon for business
-        submenu:true,
+        icon: <FaBriefcase size={20} />, // Unique icon for Business
+        submenu: true,
         subMenuItems: [
-            {title: 'Wallets',path: '/business/all_w'},
-            {title: 'Add',path: '/business/add_w'},
-            {title: 'View',path: '/business/v_w'},
-            {title: 'Edit',path: '/business/edit_w'},
-            {title: 'Reset',path: '/business/reset_w'},
+            { title: 'Wallets', path: '/business/all_w' },
+            { title: 'Add', path: '/business/add_w' },
+        ]
+    },
+    {
+        title: "Enterprise",
+        path: "/enterprise", // Make sure the path is unique
+        icon: <FaIndustry size={20} />, // Unique icon for Enterprise
+        submenu: true,
+        subMenuItems: [
+            { title: 'Wallets', path: '/enterprise/all_w' },
+            { title: 'Add', path: '/enterprise/add_w' },
+        ]
+    },
+    {
+        title: "KYC",
+        path: "/kyc",
+        icon: <FaUserShield size={20} />, // Unique icon for KYC
+        submenu: true,
+        subMenuItems: [
+            { title: 'KYC Applications', path: '/kyc/kyc_all' }
         ]
     },
     {
         title: "Transactions",
         path: "/transaction",
-        icon: <BsFillCreditCard2BackFill size={20} />  // Credit card icon for transactions
+        icon: <BsFillCreditCard2BackFill size={20} />
     },
     {
         title: "Compliance Mgt",
@@ -58,26 +77,26 @@ export const SIDEBAR_ITEMS: SideBarItems[] = [
     {
         title: "Wallets",
         path: "/wallet",
-        icon: <BsFillWalletFill size={20} />  // Unique wallet icon
+        icon: <BsFillWalletFill size={20} />
     },
     {
         title: "Audit logs",
         path: "/audit",
-        icon: <BsFillFileEarmarkTextFill size={20} />  // File icon for audit logs
+        icon: <BsFillFileEarmarkTextFill size={20} />
     },
     {
         title: "Notifications",
         path: "/notifications",
-        icon: <BsFillBellFill size={20} />  // Bell icon for notifications
+        icon: <BsFillBellFill size={20} />
     },
     {
         title: "Security",
         path: "/security",
-        icon: <BsFillLockFill size={20} />  // Lock icon for security
+        icon: <BsFillLockFill size={20} />
     },
     {
         title: "Settings",
         path: "/setting",
-        icon: <BsGear size={20} />  // Gear icon for settings
+        icon: <BsGear size={20} />
     },
 ];
