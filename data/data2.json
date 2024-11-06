@@ -1,6 +1,7 @@
 {
     "clients": [
       {
+        "type": "client",
         "personalIdentification": {
           "fullName": "John Doe",
           "dateOfBirth": "1990-01-01",
@@ -50,6 +51,7 @@
         "Date": "2023-09-20"
       },
       {
+        "type": "client",
         "personalIdentification": {
           "fullName": "Jane Smith",
           "dateOfBirth": "1985-05-15",
@@ -99,6 +101,7 @@
         "Date": "2023-09-20"
       },
       {
+        "type": "client",
         "personalIdentification": {
           "fullName": "Alice Johnson",
           "dateOfBirth": "1992-08-30",
@@ -148,6 +151,7 @@
         "Date": "2023-09-20"
       },
       {
+        "type": "client",
         "personalIdentification": {
           "fullName": "Robert Brown",
           "dateOfBirth": "1980-11-20",
@@ -197,6 +201,7 @@
         "Date": "2024-11-01"
       },
       {
+        "type": "client",
         "personalIdentification": {
           "fullName": "Maria Garcia",
           "dateOfBirth": "1995-04-12",
@@ -245,6 +250,123 @@
         "status": "Pending",
         "Date": "2024-11-01"
       }
-    ]
-  }
+    ],
+
+
+
+  "agents": [
+    {
+      "type": "agent",
+      "photo": "/ent4.webp",
+      "agentIdentification": {
+        "agentName": "Agent John",
+        "businessName": "John's Electronics",
+        "taxIdentificationNumber": "TIN12345",
+        "agentID": "A001"
+      },
+      "contactInformation": {
+        "phoneNumber": "+1-234-567-8901",
+        "emailAddress": "agent.john@example.com"
+      },
+      "businessDetails": {
+        "businessType": "Retailer",
+        "businessRegistrationNumber": "BR123456",
+        "businessAddress": "789 Market St, City, Country"
+      },
+      "productInformation": {
+        "productsListed": [
+          {
+            "productID": "P001",
+            "productName": "Smartphone",
+            "category": "Electronics",
+            "price": 500,
+            "stock": 100,
+            "productImages": "/phone1.webp"
+          }
+        ]
+      },
+      "status": "Active",
+      "Date": "2023-09-01"
+    }
+  ],
+
+  "businesses": [
+    {
+      "type": "business",
+      "photo": "/ent3.webp",
+      "businessIdentification": {
+        "businessName": "Global Corp",
+        "businessRegistrationNumber": "BC12345678",
+        "taxIdentificationNumber": "TIN98765",
+        "industry": "Technology"
+      },
+      "contactInformation": {
+        "phoneNumber": "+1-987-654-3210",
+        "emailAddress": "contact@globalcorp.com"
+      },
+      "businessLocation": {
+        "officeAddress": "123 Business Ave, Silicon Valley, USA"
+      },
+      "financialInformation": {
+        "revenue": "1000000",
+        "operatingExpenses": "500000",
+        "netProfit": "500000"
+      },
+      "employees": [
+        {
+          "employeeName": "Maria Garcia",
+          "employeePosition": "CEO",
+          "employeeID": "E001"
+        },
+        {
+          "employeeName": "Robert Brown",
+          "employeePosition": "CTO",
+          "employeeID": "E002"
+        }
+      ],
+      "status": "Verified",
+      "Date": "2023-08-01"
+    }
+  ],
+
+  "enterprises": [
+    {
+      "type": "enterprise",
+      "photo": "/ent4.webp",
+      "enterpriseIdentification": {
+        "enterpriseName": "Tech Innovators",
+        "enterpriseID": "ENT123456",
+        "taxIdentificationNumber": "E-TIN001"
+      },
+      "contactInformation": {
+        "phoneNumber": "+1-555-123-4567",
+        "emailAddress": "info@techinnovators.com"
+      },
+      "enterpriseLocation": {
+        "headquartersAddress": "456 Innovation Blvd, Tech City, USA"
+      },
+      "industry": "Software & AI",
+      "team": [
+        {
+          "teamMemberName": "Alice Johnson",
+          "role": "Lead Developer",
+          "employeeID": "T001"
+        },
+        {
+          "teamMemberName": "John Doe",
+          "role": "Product Manager",
+          "employeeID": "T002"
+        }
+      ],
+      "financialInformation": {
+        "annualRevenue": "50000000",
+        "profitMargin": "20%"
+      },
+      "status": "Active",
+      "Date": "2024-01-01"
+      
+    }
+  ]
+}
+  
   

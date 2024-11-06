@@ -31,7 +31,11 @@ export const SIDEBAR_ITEMS = [
         icon: <FaUserShield size={20} />, // Unique icon for KYC
         submenu: true,
         subMenuItems: [
-            { title: 'KYC Applications', path: '/kyc/kyc_all' }
+            { title: 'Clients', path: '/kyc/kyc_all' },
+            { title: 'Agent', path: '/kyc/agent' },
+            { title: 'Business', path: '/kyc/business' },
+            { title: 'Enterprise', path: '/kyc/enterprise' }
+
         ]
     },
     {
