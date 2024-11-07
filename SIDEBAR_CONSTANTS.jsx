@@ -45,8 +45,13 @@ export const SIDEBAR_ITEMS = [
         submenu: true,
         subMenuItems: [
             { title: 'Clients', path: '/client/all' },
-            { title: 'Agents', path: '/client/agent_all' },
+            
         ]
+    },
+    {
+        title: "Agents",
+        path: "/agent",
+        icon: <BsFillCreditCard2BackFill size={20} />
     },
     {
         title: "Business",

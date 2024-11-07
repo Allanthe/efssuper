@@ -88,7 +88,7 @@ const BusinessKyc = () => {
 
   return (
     <div className="p-8 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6">Business KYC Details</h1>
+      <h1 className="text-3xl font-bold mb-6">Business KYC</h1>
 
       {/* Alert Message */}
       {alertMessage && (
@@ -186,120 +186,113 @@ const BusinessKyc = () => {
           <div className="col-span-4 text-center text-gray-500">No matching records found.</div>
         )}
       </div>
+{/* Modal for Business Details */}
+{isModalOpen && selectedBusiness && (
+  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+    <div className="bg-white p-4 md:p-6 rounded-lg shadow-lg w-full max-w-2xl relative overflow-auto z-60">
+      {/* Close Button */}
+      <button
+        onClick={handleCloseModal}
+        className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
+      >
+        <FaTimes size={18} />
+      </button>
 
-      {/* Modal for Business Details */}
-      {isModalOpen && selectedBusiness && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70">
-          <div className="bg-white p-6 md:p-8 rounded-lg shadow-lg w-full max-w-4xl relative overflow-auto">
-            {/* Close Button */}
-            <button
-              onClick={handleCloseModal}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
-            >
-              <FaTimes size={20} />
-            </button>
+      <form className="space-y-4">
+        {/* Business Info Section */}
+        <div className="flex flex-col items-center mb-2">
+          {selectedBusiness.photo && (
+            <img
+              src={selectedBusiness.photo}
+              alt={selectedBusiness.businessIdentification.businessName}
+              className="w-20 h-20 rounded-full border-2 border-violet-500 mb-1"
+            />
+          )}
+          <h2 className="text-lg font-bold mb-1">{selectedBusiness.businessIdentification.businessName}</h2>
+          <p className="text-sm text-gray-500">{selectedBusiness.businessIdentification.industry}</p>
+          <p className="text-xs text-gray-400">{selectedBusiness.businessLocation.officeAddress}</p>
+        </div>
 
-            <form className="space-y-8">
-              {/* Business Info Section */}
-              <div className="flex flex-col items-center mb-6">
-                {selectedBusiness.photo && (
-                  <img
-                    src={selectedBusiness.photo}
-                    alt={selectedBusiness.businessIdentification.businessName}
-                    className="w-32 h-32 rounded-full border-4 border-violet-500 mb-2"
-                  />
-                )}
-                <h2 className="text-2xl font-bold mb-2">{selectedBusiness.businessIdentification.businessName}</h2>
-                <p className="text-lg text-gray-600">{selectedBusiness.businessIdentification.industry}</p>
-                <p className="text-sm text-gray-500">{selectedBusiness.businessLocation.officeAddress}</p>
-              </div>
+        {/* Grid Layout for Details */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {/* Business Identification */}
+          <div className="bg-gray-50 p-3 rounded-lg shadow-sm space-y-1">
+            <h3 className="text-md font-semibold text-violet-600">Business ID</h3>
+            <div className="flex items-center text-sm">
+              <FaBuilding className="mr-1 text-violet-500" />
+              <p>{selectedBusiness.businessIdentification.businessName}</p>
+            </div>
+            <p className="text-xs text-gray-400">{selectedBusiness.businessIdentification.businessRegistrationNumber}</p>
+            <p className="text-xs text-gray-400">{selectedBusiness.businessIdentification.taxIdentificationNumber}</p>
+          </div>
 
-              {/* Business Details */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {/* Identification */}
-                <div className="bg-gray-50 p-4 rounded-lg shadow-sm space-y-4">
-                  <h3 className="text-xl font-semibold text-violet-600">Business Identification</h3>
-                  <div className="flex items-center">
-                    <FaBuilding size={20} className="mr-2 text-violet-500" />
-                    <p>{selectedBusiness.businessIdentification.businessName}</p>
-                  </div>
-                  <div className="flex items-center">
-                    <p>{selectedBusiness.businessIdentification.businessRegistrationNumber}</p>
-                  </div>
-                  <div className="flex items-center">
-                    <p>{selectedBusiness.businessIdentification.taxIdentificationNumber}</p>
-                  </div>
-                </div>
+          {/* Contact Information */}
+          <div className="bg-gray-50 p-3 rounded-lg shadow-sm space-y-1">
+            <h3 className="text-md font-semibold text-green-600">Contact</h3>
+            <div className="flex items-center text-sm">
+              <FaPhoneAlt className="mr-1 text-green-500" />
+              <p>{selectedBusiness.contactInformation.phoneNumber}</p>
+            </div>
+            <div className="flex items-center text-sm">
+              <FaEnvelope className="mr-1 text-green-500" />
+              <p>{selectedBusiness.contactInformation.emailAddress}</p>
+            </div>
+          </div>
 
-                {/* Contact Information */}
-                <div className="bg-gray-50 p-4 rounded-lg shadow-sm space-y-4">
-                  <h3 className="text-xl font-semibold text-green-600">Contact Information</h3>
-                  <div className="flex items-center">
-                    <FaPhoneAlt size={20} className="mr-2 text-green-500" />
-                    <p>{selectedBusiness.contactInformation.phoneNumber}</p>
-                  </div>
-                  <div className="flex items-center">
-                    <FaEnvelope size={20} className="mr-2 text-green-500" />
-                    <p>{selectedBusiness.contactInformation.emailAddress}</p>
-                  </div>
-                </div>
+          {/* Financial Information */}
+          <div className="bg-gray-50 p-3 rounded-lg shadow-sm space-y-1">
+            <h3 className="text-md font-semibold text-indigo-600">Financials</h3>
+            <div className="text-sm">
+              <FaDollarSign className="mr-1 text-indigo-500" /> 
+              Revenue: ${selectedBusiness.financialInformation.revenue}
+            </div>
+            <p className="text-xs">Expenses: ${selectedBusiness.financialInformation.operatingExpenses}</p>
+            <p className="text-xs">Net Profit: ${selectedBusiness.financialInformation.netProfit}</p>
+          </div>
 
-                {/* Financial Information */}
-                <div className="bg-gray-50 p-4 rounded-lg shadow-sm space-y-4">
-                  <h3 className="text-xl font-semibold text-indigo-600">Financial Information</h3>
-                  <div className="flex items-center">
-                    <FaDollarSign size={20} className="mr-2 text-indigo-500" />
-                    <p>Revenue: ${selectedBusiness.financialInformation.revenue}</p>
-                  </div>
-                  <div className="flex items-center">
-                    <p>Operating Expenses: ${selectedBusiness.financialInformation.operatingExpenses}</p>
-                  </div>
-                  <div className="flex items-center">
-                    <p>Net Profit: ${selectedBusiness.financialInformation.netProfit}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Employees */}
-              <div className="mt-6">
-                <h3 className="text-xl font-semibold text-blue-600">Employees</h3>
-                <ul className="space-y-2">
-                  {selectedBusiness.employees.map((employee) => (
-                    <li key={employee.employeeID} className="flex justify-between">
-                      <p>{employee.employeeName}</p>
-                      <span className="text-sm text-gray-500">{employee.employeePosition}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex justify-end mt-6 space-x-4">
-                <button
-                  onClick={() => handleRejection(selectedBusiness)}
-                  className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
-                >
-                  Reject
-                </button>
-                <button
-                  onClick={() => handleApproval(selectedBusiness)}
-                  className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
-                >
-                  Approve
-                </button>
-                {selectedBusiness.status === 'Approved' && (
-                  <button
-                    onClick={() => handleBlock(selectedBusiness)}
-                    className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600"
-                  >
-                    Block
-                  </button>
-                )}
-              </div>
-            </form>
+          {/* Employees */}
+          <div className="bg-gray-50 p-3 rounded-lg shadow-sm space-y-1">
+            <h3 className="text-md font-semibold text-blue-600">Employees</h3>
+            <ul className="space-y-1 text-sm">
+              {selectedBusiness.employees.map((employee) => (
+                <li key={employee.employeeID} className="flex justify-between">
+                  <p>{employee.employeeName}</p>
+                  <span className="text-xs text-gray-500">{employee.employeePosition}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      )}
+
+        {/* Action Buttons */}
+        <div className="flex justify-end mt-4 space-x-3">
+          <button
+            onClick={() => handleRejection(selectedBusiness)}
+            className="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 text-sm"
+          >
+            Reject
+          </button>
+          <button
+            onClick={() => handleApproval(selectedBusiness)}
+            className="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600 text-sm"
+          >
+            Approve
+          </button>
+          {selectedBusiness.status === 'Approved' && (
+            <button
+              onClick={() => handleBlock(selectedBusiness)}
+              className="bg-orange-500 text-white px-3 py-1 rounded-lg hover:bg-orange-600 text-sm"
+            >
+              Block
+            </button>
+          )}
+        </div>
+      </form>
+    </div>
+  </div>
+)}
+
+
     </div>
   );
 };

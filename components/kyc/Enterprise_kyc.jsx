@@ -72,7 +72,7 @@ const EnterpriseKyc = () => {
 
   return (
     <div className="p-8 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6">Enterprise KYC Details</h1>
+      <h1 className="text-3xl font-bold mb-6">Enterprise KYC</h1>
 
       {/* Alert Message */}
       {alertMessage && (
@@ -161,95 +161,95 @@ const EnterpriseKyc = () => {
         )}
       </div>
 
-      {/* Modal for Enterprise Details */}
-      {isModalOpen && selectedEnterprise && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70">
-          <div className="bg-white p-6 md:p-8 rounded-lg shadow-lg w-full max-w-4xl relative overflow-auto">
-            {/* Close Button */}
-            <button onClick={handleCloseModal} className="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
-              <FaTimes size={20} />
-            </button>
+     {/* Modal for Enterprise Details */}
+{isModalOpen && selectedEnterprise && (
+  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+    <div className="bg-white p-4 md:p-6 rounded-lg shadow-lg w-full max-w-3xl relative overflow-auto z-60">
+      {/* Close Button */}
+      <button onClick={handleCloseModal} className="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+        <FaTimes size={20} />
+      </button>
 
-            <form className="space-y-8">
-              {/* Enterprise Info Section */}
-              <div className="flex flex-col items-center mb-6">
-                <img
-                  src={selectedEnterprise.photo || '/default-image.jpg'}
-                  alt={selectedEnterprise.enterpriseIdentification.enterpriseName}
-                  className="w-32 h-32 rounded-full border-4 border-violet-500 mb-2"
-                />
-                <h2 className="text-2xl font-bold">{selectedEnterprise.enterpriseIdentification.enterpriseName}</h2>
-                <p className="text-gray-500">{selectedEnterprise.enterpriseIdentification.enterpriseID}</p>
-              </div>
+      <form className="space-y-8">
+        {/* Enterprise Info Section */}
+        <div className="flex flex-col items-center mb-6">
+          <img
+            src={selectedEnterprise.photo || '/default-image.jpg'}
+            alt={selectedEnterprise.enterpriseIdentification.enterpriseName}
+            className="w-28 h-28 rounded-full border-4 border-violet-500 mb-2"
+          />
+          <h2 className="text-xl font-bold">{selectedEnterprise.enterpriseIdentification.enterpriseName}</h2>
+          <p className="text-gray-500">{selectedEnterprise.enterpriseIdentification.enterpriseID}</p>
+        </div>
 
-              {/* Enterprise Info Grid (2 Columns) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {/* Enterprise Info Grid (2 Columns) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {/* Left Column: Financial & Contact Info */}
+          <div className="bg-gray-50 p-4 rounded-lg shadow-sm space-y-4">
+            <h3 className="text-lg font-semibold text-violet-600">Financial Information</h3>
+            <div className="flex items-center">
+              <FaDollarSign size={20} className="mr-2 text-violet-500" />
+              <p>Annual Revenue: ${selectedEnterprise.financialInformation.annualRevenue}</p>
+            </div>
+            <div className="flex items-center">
+              <FaDollarSign size={20} className="mr-2 text-violet-500" />
+              <p>Profit Margin: {selectedEnterprise.financialInformation.profitMargin}%</p>
+            </div>
+            <h3 className="text-lg font-semibold text-violet-600">Contact Info</h3>
+            <div className="flex items-center">
+              <FaPhoneAlt size={20} className="mr-2 text-violet-500" />
+              <p>{selectedEnterprise.contactInformation.phoneNumber}</p>
+            </div>
+            <div className="flex items-center">
+              <FaEnvelope size={20} className="mr-2 text-violet-500" />
+              <p>{selectedEnterprise.contactInformation.emailAddress}</p>
+            </div>
+          </div>
 
-                {/* Left Column: Financial & Contact Info */}
-                <div className="bg-gray-50 p-4 rounded-lg shadow-sm space-y-4">
-                  <h3 className="text-xl font-semibold text-violet-600">Financial Information</h3>
-                  <div className="flex items-center">
-                    <FaDollarSign size={20} className="mr-2 text-violet-500" />
-                    <p>Annual Revenue: ${selectedEnterprise.financialInformation.annualRevenue}</p>
-                  </div>
-                  <div className="flex items-center">
-                    <FaDollarSign size={20} className="mr-2 text-violet-500" />
-                    <p>Profit Margin: {selectedEnterprise.financialInformation.profitMargin}%</p>
-                  </div>
-                  <h3 className="text-xl font-semibold text-violet-600">Contact Info</h3>
-                  <div className="flex items-center">
-                    <FaPhoneAlt size={20} className="mr-2 text-violet-500" />
-                    <p>{selectedEnterprise.contactInformation.phoneNumber}</p>
-                  </div>
-                  <div className="flex items-center">
-                    <FaEnvelope size={20} className="mr-2 text-violet-500" />
-                    <p>{selectedEnterprise.contactInformation.emailAddress}</p>
-                  </div>
-                </div>
+          {/* Right Column: Location & Team Info */}
+          <div className="bg-gray-50 p-4 rounded-lg shadow-sm space-y-4">
+            <h3 className="text-lg font-semibold text-violet-600">Location</h3>
+            <div className="flex items-center">
+              <FaMapMarkedAlt size={20} className="mr-2 text-violet-500" />
+              <p>{selectedEnterprise.enterpriseLocation.headquartersAddress}</p>
+            </div>
 
-                {/* Right Column: Location & Team Info */}
-                <div className="bg-gray-50 p-4 rounded-lg shadow-sm space-y-4">
-                  <h3 className="text-xl font-semibold text-violet-600">Location</h3>
-                  <div className="flex items-center">
-                    <FaMapMarkedAlt size={20} className="mr-2 text-violet-500" />
-                    <p>{selectedEnterprise.enterpriseLocation.headquartersAddress}</p>
-                  </div>
+            <h3 className="text-lg font-semibold text-violet-600">Team Members</h3>
+            <ul className="space-y-2">
+              {selectedEnterprise.team.map((member) => (
+                <li key={member.employeeID} className="flex justify-between">
+                  <span>{member.teamMemberName} - {member.role}</span>
+                </li>
+              ))}
+            </ul>
 
-                  <h3 className="text-xl font-semibold text-violet-600">Team Members</h3>
-                  <ul className="space-y-2">
-                    {selectedEnterprise.team.map((member) => (
-                      <li key={member.employeeID} className="flex justify-between">
-                        <span>{member.teamMemberName} - {member.role}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <h3 className="text-xl font-semibold text-violet-600">Status</h3>
-                  <div className="flex items-center">
-                    <p>{selectedEnterprise.status}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Approval / Rejection Buttons */}
-              <div className="flex justify-end space-x-4">
-                <button
-                  onClick={() => handleApproval(selectedEnterprise)}
-                  className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600"
-                >
-                  Approve
-                </button>
-                <button
-                  onClick={() => handleRejection(selectedEnterprise)}
-                  className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600"
-                >
-                  Reject
-                </button>
-              </div>
-            </form>
+            <h3 className="text-lg font-semibold text-violet-600">Status</h3>
+            <div className="flex items-center">
+              <p>{selectedEnterprise.status}</p>
+            </div>
           </div>
         </div>
-      )}
+
+        {/* Approval / Rejection Buttons */}
+        <div className="flex justify-end space-x-4 mt-6">
+          <button
+            onClick={() => handleApproval(selectedEnterprise)}
+            className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600"
+          >
+            Approve
+          </button>
+          <button
+            onClick={() => handleRejection(selectedEnterprise)}
+            className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600"
+          >
+            Reject
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };

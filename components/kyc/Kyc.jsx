@@ -1,6 +1,39 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import {FaLaptop,FaFingerprint,FaRegListAlt,FaUserShield,FaBriefcase, FaDollarSign,FaFileAlt,FaMapMarkedAlt,FaSearch, FaEye, FaCheckCircle, FaTimesCircle, FaSpinner, FaTimes, FaBirthdayCake, FaFlag, FaTransgenderAlt, FaPhoneAlt, FaEnvelope, FaIdCard, FaCalendarAlt, FaBan, FaWallet } from 'react-icons/fa';
+import {
+  FaIdBadge,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaFingerprint,
+  FaVenusMars,
+  FaPassport,
+  FaBriefcase,
+  FaFilePdf,
+  FaFileAlt,
+  FaMapMarkedAlt,
+  FaSearch,
+  FaEye,
+  FaCheckCircle,
+  FaTimesCircle,
+  FaSpinner,
+  FaTimes,
+  FaBirthdayCake,
+  FaFlag,
+  FaTransgenderAlt,
+  FaPhoneAlt,
+  FaEnvelope,
+  FaIdCard,
+  FaCalendarAlt,
+  FaBan,
+  FaWallet,
+  FaCircle,
+  FaDesktop,
+  FaWifi,
+  FaCamera,
+  FaMoneyBillAlt,
+  FaCreditCard,
+  FaChartLine,FaShieldAlt
+} from 'react-icons/fa';
 import Select from 'react-select';
 
 const Kyc = () => {
@@ -32,47 +65,48 @@ const Kyc = () => {
     setIsModalOpen(false);
   };
 
-  const handleApproval = (client) => {
-    if (client) {
+  const handleApproveClient = () => {
+    if (selectedClient) {
       const updatedClients = clients.map((c) =>
-        c.personalIdentification.fullName === client.personalIdentification.fullName
+        c.personalIdentification.fullName === selectedClient.personalIdentification.fullName
           ? { ...c, status: 'Approved' }
           : c
       );
       setClients(updatedClients);
       localStorage.setItem('kycData', JSON.stringify(updatedClients));
-      setAlertMessage(`Approved: ${client.personalIdentification.fullName}`);
+      setAlertMessage(`Approved: ${selectedClient.personalIdentification.fullName}`);
     }
     handleCloseModal();
   };
-
-  const handleRejection = (client) => {
-    if (client) {
+  
+  const handleRejectClient = () => {
+    if (selectedClient) {
       const updatedClients = clients.map((c) =>
-        c.personalIdentification.fullName === client.personalIdentification.fullName
+        c.personalIdentification.fullName === selectedClient.personalIdentification.fullName
           ? { ...c, status: 'Rejected' }
           : c
       );
       setClients(updatedClients);
       localStorage.setItem('kycData', JSON.stringify(updatedClients));
-      setAlertMessage(`Rejected: ${client.personalIdentification.fullName}`);
+      setAlertMessage(`Rejected: ${selectedClient.personalIdentification.fullName}`);
     }
     handleCloseModal();
   };
-
-  const handleBlock = (client) => {
-    if (client) {
+  
+  const handleBlockClient = () => {
+    if (selectedClient) {
       const updatedClients = clients.map((c) =>
-        c.personalIdentification.fullName === client.personalIdentification.fullName
+        c.personalIdentification.fullName === selectedClient.personalIdentification.fullName
           ? { ...c, status: 'Blocked' }
           : c
       );
       setClients(updatedClients);
       localStorage.setItem('kycData', JSON.stringify(updatedClients));
-      setAlertMessage(`Blocked: ${client.personalIdentification.fullName}`);
+      setAlertMessage(`Blocked: ${selectedClient.personalIdentification.fullName}`);
     }
     handleCloseModal();
   };
+  
 
   const filteredClients = clients.filter((client) => {
     const matchesKycStatus = kycStatusFilter ? client.status === kycStatusFilter : true;
@@ -84,7 +118,7 @@ const Kyc = () => {
 
   return (
     <div className="p-8 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6">KYC Details</h1>
+      <h1 className="text-3xl font-bold mb-6">Client KYC</h1>
 
       {/* Alert Message */}
       {alertMessage && (
@@ -180,164 +214,153 @@ const Kyc = () => {
     <div className="col-span-4 text-center text-gray-500">No matching records found.</div>
   )}
 </div>
-
-
-      
-
-      {isModalOpen && selectedClient && (
-  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70">
-    <div className="bg-white p-6 md:p-8 rounded-lg shadow-lg w-full max-w-4xl relative overflow-auto">
-      
-      {/* Close Button */}
+{isModalOpen && selectedClient && (
+  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+    <div className="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-4xl relative overflow-auto z-60">
       <button 
         onClick={handleCloseModal} 
-        className="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
-        <FaTimes size={20} />
+        className="absolute top-3 right-3 text-gray-500 hover:text-gray-700">
+        <FaTimes size={18} />
       </button>
 
-      <form className="space-y-8">
-        {/* Client Info Section */}
-        <div className="flex flex-col items-center mb-6">
+      <form className="space-y-6 text-sm">
+        {/* Client Profile */}
+        <div className="flex flex-col items-center mb-4">
           <img
-            src={selectedClient.photo}
+            src={selectedClient.photo || '/fallback-image.jpg'}
             alt={selectedClient.personalIdentification.fullName}
-            className="w-32 h-32 rounded-full border-4 border-violet-500 mb-2"
+            className="w-24 h-24 rounded-full border-2 border-violet-500 mb-2"
           />
-          <h2 className="text-2xl font-bold">{selectedClient.personalIdentification.fullName}</h2>
-          <p className="text-gray-500">{selectedClient.personalIdentification.dateOfBirth}</p>
+          <h2 className="text-lg font-semibold">{selectedClient.personalIdentification.fullName}</h2>
         </div>
 
-        {/* Client Info Grid (3 Columns) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-          {/* Left Column: Personal Info & Contact */}
-          <div className="bg-gray-50 p-4 rounded-lg shadow-sm space-y-4">
-            <h3 className="text-xl font-semibold text-violet-600">Personal Identification</h3>
-            <div className="flex items-center">
-              <FaBirthdayCake size={20} className="mr-2 text-violet-500" />
-              <p>{selectedClient.personalIdentification.dateOfBirth}</p>
+        {/* 3 Column Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* First Column: Personal Info */}
+          <div className="space-y-4">
+            <div className="bg-gray-50 p-4 rounded-lg shadow-sm space-y-2">
+              <p className="flex items-center">
+                <FaIdBadge className="mr-2 text-violet-500" /> {selectedClient.personalIdentification.dateOfBirth}
+              </p>
+              <p className="flex items-center">
+                <FaFlag className="mr-2 text-violet-500" /> {selectedClient.personalIdentification.nationality}
+              </p>
+              <p className="flex items-center">
+                <FaVenusMars className="mr-2 text-violet-500" /> {selectedClient.personalIdentification.gender}
+              </p>
             </div>
-            <div className="flex items-center">
-              <FaFlag size={20} className="mr-2 text-violet-500" />
-              <p>{selectedClient.personalIdentification.nationality}</p>
-            </div>
-            <div className="flex items-center">
-              <FaTransgenderAlt size={20} className="mr-2 text-violet-500" />
-              <p>{selectedClient.personalIdentification.gender}</p>
-            </div>
-
-            {/* Contact Info */}
-            <h3 className="text-xl font-semibold text-green-600 mt-6">Contact Info</h3>
-            <div className="flex items-center">
-              <FaPhoneAlt size={20} className="mr-2 text-green-500" />
-              <p>{selectedClient.contactInformation.phoneNumber}</p>
-            </div>
-            <div className="flex items-center">
-              <FaEnvelope size={20} className="mr-2 text-green-500" />
-              <p>{selectedClient.contactInformation.emailAddress}</p>
+            <div className="bg-gray-50 p-4 rounded-lg shadow-sm space-y-2">
+              <p className="flex items-center">
+                <FaPhone className="mr-2 text-violet-500" /> {selectedClient.contactInformation.phoneNumber}
+              </p>
+              <p className="flex items-center">
+                <FaEnvelope className="mr-2 text-violet-500" /> {selectedClient.contactInformation.emailAddress}
+              </p>
             </div>
           </div>
 
-          {/* Middle Column: Documents & Financial Info */}
-          <div className="bg-gray-50 p-4 rounded-lg shadow-sm space-y-4">
-            {/* Identification Documents */}
-            <h3 className="text-xl font-semibold text-orange-600">Identification Documents</h3>
-            <div className="flex items-center">
-              <FaIdCard size={20} className="mr-2 text-orange-500" />
-              <p>{selectedClient.identificationDocuments.idType}: {selectedClient.identificationDocuments.idNumber}</p>
+          {/* Second Column: Address & Financial Info */}
+          <div className="space-y-4">
+            <div className="bg-gray-50 p-4 rounded-lg shadow-sm space-y-2">
+              <p className="flex items-center">
+                <FaMapMarkerAlt className="mr-2 text-violet-500" /> {selectedClient.addressVerification.residentialAddress}
+              </p>
+              <p className="flex items-center">
+                <FaFilePdf className="mr-2 text-violet-500" /> {selectedClient.addressVerification.proofOfAddressDocument}
+              </p>
             </div>
-            <div className="flex items-center">
-              <FaCalendarAlt size={20} className="mr-2 text-orange-500" />
-              <p>Expires: {selectedClient.identificationDocuments.expirationDate}</p>
-            </div>
-
-            {/* Address Verification */}
-            <h3 className="text-xl font-semibold text-blue-600 mt-6">Address Info</h3>
-            <div className="flex items-center">
-              <FaMapMarkedAlt size={20} className="mr-2 text-blue-500" />
-              <p>{selectedClient.addressVerification.residentialAddress}</p>
-            </div>
-            <div className="flex items-center">
-              <FaFileAlt size={20} className="mr-2 text-blue-500" />
-              <p>{selectedClient.addressVerification.proofOfAddressDocument}</p>
-            </div>
-
-            {/* Financial Info */}
-            <h3 className="text-xl font-semibold text-teal-600 mt-6">Financial Info</h3>
-            <div className="flex items-center">
-              <FaBan size={20} className="mr-2 text-teal-500" />
-              <p>{selectedClient.financialInformation.bankAccountDetails.bankName}</p>
-            </div>
-            <div className="flex items-center">
-              <FaWallet size={20} className="mr-2 text-teal-500" />
-              <p>{selectedClient.financialInformation.bankAccountDetails.accountNumber}</p>
+            <div className="bg-gray-50 p-4 rounded-lg shadow-sm space-y-2">
+              <p className="flex items-center">
+                <FaMoneyBillAlt className="mr-2 text-violet-500" /> {selectedClient.financialInformation.sourceOfIncome}
+              </p>
+              <p className="flex items-center">
+                <FaBriefcase className="mr-2 text-violet-500" /> {selectedClient.financialInformation.employmentInformation.jobTitle} at {selectedClient.financialInformation.employmentInformation.employerName}
+              </p>
+              <p className="flex items-center">
+                <FaCreditCard className="mr-2 text-violet-500" /> Bank: {selectedClient.financialInformation.bankAccountDetails.bankName}
+              </p>
             </div>
           </div>
 
-          {/* Right Column: Risk Assessment & Digital Identity */}
-          <div className="bg-gray-50 p-4 rounded-lg shadow-sm space-y-4">
-            {/* Risk Assessment */}
-            <h3 className="text-xl font-semibold text-yellow-600">Risk Assessment</h3>
-            <div className="flex items-center">
-              <FaUserShield size={20} className="mr-2 text-yellow-500" />
-              <p>Account Purpose: {selectedClient.riskAssessmentInformation.purposeOfAccount}</p>
-            </div>
-            <div className="flex items-center">
-              <FaRegListAlt size={20} className="mr-2 text-yellow-500" />
-              <p>Expected Activity: {selectedClient.riskAssessmentInformation.expectedAccountActivity}</p>
-            </div>
-
-            {/* Digital Identity Verification */}
-            <h3 className="text-xl font-semibold text-purple-600 mt-6">Digital Identity Verification</h3>
-            <div className="flex items-center">
-              <FaFingerprint size={20} className="mr-2 text-purple-500" />
-              <p>Facial Recognition: {selectedClient.digitalIdentityVerification.biometricData.facialRecognition}</p>
-            </div>
-            <div className="flex items-center">
-              <FaFingerprint size={20} className="mr-2 text-purple-500" />
-              <p>Fingerprint: {selectedClient.digitalIdentityVerification.biometricData.fingerprint}</p>
-            </div>
-            <div className="flex items-center">
-              <FaLaptop size={20} className="mr-2 text-purple-500" />
-              <p>Device ID: {selectedClient.digitalIdentityVerification.deviceInformation.deviceID}</p>
-            </div>
-            <div className="flex items-center">
-              <FaLaptop size={20} className="mr-2 text-purple-500" />
-              <p>IP Address: {selectedClient.digitalIdentityVerification.deviceInformation.ipAddress}</p>
+          {/* Third Column: Risk Assessment Info */}
+          <div className="space-y-4">
+            <div className="bg-gray-50 p-4 rounded-lg shadow-sm space-y-2">
+              <p className="flex items-center">
+                <FaShieldAlt className="mr-2 text-violet-500" /> Purpose: {selectedClient.riskAssessmentInformation.purposeOfAccount}
+              </p>
+              <p className="flex items-center">
+                <FaChartLine className="mr-2 text-violet-500" /> Activity: {selectedClient.riskAssessmentInformation.expectedAccountActivity}
+              </p>
             </div>
           </div>
-
         </div>
 
-        {/* Status & Action Buttons */}
-        <div className="flex justify-end mt-6 space-x-4">
-          <button
-            onClick={() => handleRejection(selectedClient)}
-            className={`bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 ${selectedClient.status === 'Pending' || selectedClient.status === 'Approved' ? '' : 'opacity-50 cursor-not-allowed'}`}
-            disabled={selectedClient.status !== 'Pending' && selectedClient.status !== 'Approved'}
-          >
-            Reject
-          </button>
-          <button
-            onClick={() => handleApproval(selectedClient)}
-            className={`bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 ${selectedClient.status === 'Approved' || selectedClient.status === 'Rejected' ? 'opacity-50 cursor-not-allowed' : ''}`}
-            disabled={selectedClient.status === 'Approved' || selectedClient.status === 'Rejected'}
-          >
-            Approve
-          </button>
+        {/* Digital Identity Verification - 2 Columns Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+          <div className="bg-gray-50 p-4 rounded-lg shadow-sm space-y-2">
+            <p className="flex items-center">
+              <FaFingerprint className="mr-2 text-violet-500" /> Fingerprint: {selectedClient.digitalIdentityVerification.biometricData.fingerprint}
+            </p>
+            <p className="flex items-center">
+              <FaCamera className="mr-2 text-violet-500" /> Facial Recognition: {selectedClient.digitalIdentityVerification.biometricData.facialRecognition}
+            </p>
+          </div>
+
+          <div className="bg-gray-50 p-4 rounded-lg shadow-sm space-y-2">
+            <p className="flex items-center">
+              <FaDesktop className="mr-2 text-violet-500" /> Device ID: {selectedClient.digitalIdentityVerification.deviceInformation.deviceID}
+            </p>
+            <p className="flex items-center">
+              <FaWifi className="mr-2 text-violet-500" /> IP Address: {selectedClient.digitalIdentityVerification.deviceInformation.ipAddress}
+            </p>
+          </div>
+        </div>
+
+        {/* Status and Date */}
+        <div className="flex justify-between items-center mt-6 text-xs text-gray-600">
+          <p className="flex items-center">
+            <FaCircle className={`mr-2 ${selectedClient.status === 'Approved' ? 'text-green-500' : 'text-gray-400'}`} /> 
+            {selectedClient.status}
+          </p>
+          <p className="flex items-center">
+            <FaCalendarAlt className="mr-2" /> {selectedClient.Date}
+          </p>
+        </div>
+
+        {/* Conditional Buttons */}
+        <div className="flex justify-end space-x-4 mt-4">
           {selectedClient.status === 'Approved' && (
             <button
-              onClick={() => handleBlock(selectedClient)}
-              className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600"
+              onClick={handleBlockClient}
+              className="bg-red-500 text-white py-1 px-4 rounded text-sm hover:bg-red-600 focus:outline-none"
             >
               Block
             </button>
+          )}
+
+          {selectedClient.status === 'Pending' && (
+            <>
+              <button
+                onClick={handleApproveClient}
+                className="bg-green-500 text-white py-1 px-4 rounded text-sm hover:bg-green-600 focus:outline-none"
+              >
+                Approve
+              </button>
+              <button
+                onClick={handleRejectClient}
+                className="bg-yellow-500 text-white py-1 px-4 rounded text-sm hover:bg-yellow-600 focus:outline-none"
+              >
+                Reject
+              </button>
+            </>
           )}
         </div>
       </form>
     </div>
   </div>
 )}
+
+
 
 
 

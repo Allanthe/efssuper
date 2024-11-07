@@ -1,4 +1,3 @@
-
 'use client'
 import React, { useState, useMemo } from 'react';
 import initialData from '../../data/data.json';
@@ -174,78 +173,78 @@ const All = () => {
           )}
         </div>
       </div>
-{/* Unified Client Cards with Square Photo on the Left */}
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-  {currentClients.map(client => (
-    <div key={client.clientId} className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 relative">
-      <div className="flex items-start space-x-4">
-        {/* Image */}
-        <div className="relative w-24 h-24">
-          <img 
-            src={client.photo} 
-            alt={`${client.name}'s photo`} 
-            className="w-full h-full object-cover rounded-lg border-2 border-violet-500" 
-          />
-        </div>
 
-        {/* Client Info */}
-        <div className="flex flex-col justify-between flex-grow">
-          <h2 className="font-bold text-lg">{client.name}</h2>
-          
-          {/* Nationality */}
-          <p className="flex items-center text-sm">
-            <FaFlag className="mr-2 text-violet-950" />
-            <span>{client.nationality}</span>
-          </p>
+      {/* Unified Client Cards with Square Photo on the Left */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {currentClients.map(client => (
+          <div key={client.clientId} className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 relative">
+            <div className="flex items-start space-x-4">
+              {/* Image */}
+              <div className="relative w-24 h-24">
+                <img 
+                  src={client.photo} 
+                  alt={`${client.name}'s photo`} 
+                  className="w-full h-full object-cover rounded-lg border-2 border-violet-500" 
+                />
+              </div>
 
-          {/* Contact */}
-          <p className="flex items-center text-sm">
-            <FaPhone className="mr-2 text-violet-950" />
-            <span>{client.contact}</span>
-          </p>
+              {/* Client Info */}
+              <div className="flex flex-col justify-between flex-grow">
+                <h2 className="font-bold text-lg">{client.name}</h2>
+                
+                {/* Nationality */}
+                <p className="flex items-center text-sm">
+                  <FaFlag className="mr-2 text-violet-950" />
+                  <span>{client.nationality}</span>
+                </p>
 
-          {/* Email */}
-          <p className="flex items-center text-sm">
-            <FaEnvelope className="mr-2 text-violet-950" />
-            <span>{client.email}</span>
-          </p>
+                {/* Contact */}
+                <p className="flex items-center text-sm">
+                  <FaPhone className="mr-2 text-violet-950" />
+                  <span>{client.contact}</span>
+                </p>
 
-          {/* Balance */}
-          <p className="flex items-center text-sm">
-            <FaWallet className="mr-2 text-violet-950" />
-            <span>${client.balance.toFixed(2)}</span>
-          </p>
+                {/* Email */}
+                <p className="flex items-center text-sm">
+                  <FaEnvelope className="mr-2 text-violet-950" />
+                  <span>{client.email}</span>
+                </p>
 
-          {/* Status and Actions */}
-          <div className="flex justify-between items-center mt-4">
-            <span className={`text-sm font-semibold ${client.status === 'Active' ? 'text-green-600' : 'text-red-600'}`}>
-              {client.status}
-            </span>
+                {/* Balance */}
+                <p className="flex items-center text-sm">
+                  <FaWallet className="mr-2 text-violet-950" />
+                  <span>${client.balance.toFixed(2)}</span>
+                </p>
 
-            <div className="space-x-2">
-              {/* Toggle Action */}
-              <button 
-                className="bg-blue-500 text-white px-2 py-1 rounded"
-                onClick={() => handleAction(client.clientId, 'change')}
-              >
-                {client.status === 'Active' ? 'Block' : 'Activate'}
-              </button>
+                {/* Status and Actions */}
+                <div className="flex justify-between items-center mt-4">
+                  <span className={`text-sm font-semibold ${client.status === 'Active' ? 'text-green-600' : 'text-red-600'}`}>
+                    {client.status}
+                  </span>
 
-              {/* Delete Button */}
-              <button 
-                className=" text-black px-2 py-1 rounded"
-                onClick={() => handleDelete(client.clientId)}
-              >
-                <FaTrash />
-              </button>
+                  <div className="space-x-2">
+                    {/* Toggle Action */}
+                    <button 
+                      className="bg-blue-500 text-white px-2 py-1 rounded"
+                      onClick={() => handleAction(client.clientId, 'change')}
+                    >
+                      {client.status === 'Active' ? 'Block' : 'Activate'}
+                    </button>
+
+                    {/* Delete Button */}
+                    <button 
+                      className=" text-black px-2 py-1 rounded"
+                      onClick={() => handleDelete(client.clientId)}
+                    >
+                      <FaTrash />
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        ))}
       </div>
-    </div>
-  ))}
-</div>
-
 
       {renderPagination()}
 
@@ -257,17 +256,17 @@ const All = () => {
             <h2 className="text-lg font-bold">Confirm Action</h2>
 
             {/* Fetch the client using the actionClientId */}
-      {clients && clients.length > 0 && (
-        <p>
-        {actionType === 'change' 
-          ? `Are you sure you want to permanently block ` 
-          : `Are you sure you want to delete`}
-        <span className="font-bold">
-          {clients.find(client => client.clientId === actionClientId)?.name}
-        </span>?
-      </p>
-      
-      )}
+            {clients && clients.length > 0 && (
+              <p>
+                {actionType === 'change' 
+                  ? `Are you sure you want to permanently block ` 
+                  : `Are you sure you want to delete`}
+                <span className="font-bold">
+                  {clients.find(client => client.clientId === actionClientId)?.name}
+                </span>?
+              </p>
+            )}
+
             <div className="mt-4">
               <button 
                 className="bg-green-500 text-white px-4 py-2 rounded mr-2"
