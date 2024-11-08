@@ -97,32 +97,39 @@ const BusinessKyc = () => {
         </div>
       )}
 
-      {/* Filters */}
-      <div className="mb-4 flex items-center gap-4 rounded-lg bg-white p-4 shadow-md">
-        <Select
-          value={{ value: kycStatusFilter, label: kycStatusFilter || 'All KYC Status' }}
-          onChange={(option) => setKycStatusFilter(option.value)}
-          options={[
-            { value: '', label: 'All KYC Status' },
-            { value: 'Approved', label: 'Approved' },
-            { value: 'Pending', label: 'Pending' },
-            { value: 'Rejected', label: 'Rejected' },
-            { value: 'Blocked', label: 'Blocked' },
-          ]}
-          className="w-1/6 border-r-amber-300 rounded-lg"
-        />
+<div className="mb-6 flex items-center gap-6 bg-white p-6 rounded-lg shadow-lg transition-all duration-300 ease-in-out">
+  {/* KYC Status Filter */}
+  <div className="w-full sm:w-[220px]">
+    <Select
+      value={{ value: kycStatusFilter, label: kycStatusFilter || 'All KYC Status' }}
+      onChange={(option) => setKycStatusFilter(option.value)}
+      options={[
+        { value: '', label: 'All KYC Status' },
+        { value: 'Approved', label: 'Approved' },
+        { value: 'Pending', label: 'Pending' },
+        { value: 'Rejected', label: 'Rejected' },
+        { value: 'Blocked', label: 'Blocked' },
+      ]}
+      className="w-full rounded-lg shadow-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all duration-200 ease-in-out"
+    />
+  </div>
 
-        <div className="relative w-1/6">
-          <input
-            type="text"
-            placeholder="Search by Name"
-            value={nameFilter}
-            onChange={(e) => setNameFilter(e.target.value)}
-            className="p-2 border rounded-lg pl-10"
-          />
-          <FaSearch className="absolute left-3 top-2.5 text-gray-400" />
-        </div>
-      </div>
+  
+
+  {/* Name Filter (Right-Aligned) */}
+  <div className="relative w-full sm:w-[220px] ml-auto">
+    <input
+      type="text"
+      placeholder="Search by name"
+      value={nameFilter}
+      onChange={(e) => setNameFilter(e.target.value)}
+      className="w-full p-3 pl-12 pr-4 bg-transparent border-none focus:outline-none focus:ring-0 text-gray-600"
+    />
+    <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+  </div>
+</div>
+
+
 
       {/* Business Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

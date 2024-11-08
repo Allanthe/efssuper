@@ -53,6 +53,56 @@
       {
         "type": "client",
         "personalIdentification": {
+          "fullName": "John Doe",
+          "dateOfBirth": "1990-01-01",
+          "nationality": "American",
+          "gender": "Male"
+        },
+        "identificationDocuments": {
+          "idType": "Passport",
+          "idNumber": "A12345678",
+          "expirationDate": "2030-01-01"
+        },
+        "addressVerification": {
+          "residentialAddress": "123 Main St, Anytown, USA",
+          "proofOfAddressDocument": "utilityBill.pdf"
+        },
+        "contactInformation": {
+          "phoneNumber": "+1-234-567-8901",
+          "emailAddress": "john.doe@example.com"
+        },
+        "financialInformation": {
+          "bankAccountDetails": {
+            "accountNumber": "987654321",
+            "bankName": "Sample Bank"
+          },
+          "sourceOfIncome": "Employment",
+          "employmentInformation": {
+            "employerName": "Tech Corp",
+            "jobTitle": "Software Engineer"
+          }
+        },
+        "riskAssessmentInformation": {
+          "purposeOfAccount": "Personal savings",
+          "expectedAccountActivity": "Monthly deposits, occasional withdrawals"
+        },
+        "digitalIdentityVerification": {
+          "biometricData": {
+            "facialRecognition": "facialData123",
+            "fingerprint": "fingerprintData123"
+          },
+          "deviceInformation": {
+            "ipAddress": "192.168.1.1",
+            "deviceID": "device12345"
+          }
+        },
+        "photo":  "/11.webp",
+        "status": "Approved",
+        "Date": "2023-09-20"
+      },
+      {
+        "type": "client",
+        "personalIdentification": {
           "fullName": "Jane Smith",
           "dateOfBirth": "1985-05-15",
           "nationality": "British",
@@ -365,8 +415,45 @@
       "status": "Active",
       "Date": "2024-01-01"
       
+    },
+    {
+      "type": "enterprise",
+      "photo": "/ent4.webp",
+      "enterpriseIdentification": {
+        "enterpriseName": "Tech Innovators",
+        "enterpriseID": "ENT123456",
+        "taxIdentificationNumber": "E-TIN001"
+      },
+      "contactInformation": {
+        "phoneNumber": "+1-555-123-4567",
+        "emailAddress": "info@techinnovators.com"
+      },
+      "enterpriseLocation": {
+        "headquartersAddress": "456 Innovation Blvd, Tech City, USA"
+      },
+      "industry": "Software & AI",
+      "team": [
+        {
+          "teamMemberName": "Alice Johnson",
+          "role": "Lead Developer",
+          "employeeID": "T001"
+        },
+        {
+          "teamMemberName": "John Doe",
+          "role": "Product Manager",
+          "employeeID": "T002"
+        }
+      ],
+      "financialInformation": {
+        "annualRevenue": "50000000",
+        "profitMargin": "20%"
+      },
+      "status": "Active",
+      "Date": "2024-01-01"
+      
     }
   ]
+  
 }
   
   

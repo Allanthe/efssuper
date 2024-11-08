@@ -125,54 +125,55 @@ const All = () => {
         </div>
       )}
 
-      {/* Search and Filter Bar */}
-      <div className="flex justify-between items-center mb-4 space-x-4 bg-white p-4 rounded-lg shadow-md">
-        {/* Left Section: Select components */}
-        <div className="flex space-x-4">
-          <div className="w-[200px]">
-            <Select 
-              className="w-full rounded-lg shadow-sm"
-              options={statusOptions}
-              value={filterStatus}
-              onChange={setFilterStatus}
-              placeholder="Select Status"
-            />
-          </div>
+     {/* Search and Filter Bar */}
+<div className="flex items-center mb-4 bg-white p-4 rounded-lg shadow-md">
+  {/* Left Section: Select components */}
+  <div className="flex space-x-6">
+    <div className="w-[220px]">
+      <Select 
+        className="w-full rounded-lg shadow-sm border border-violet-300 focus:ring-2 focus:ring-violet-500 focus:outline-none transition-all duration-300 ease-in-out"
+        options={statusOptions}
+        value={filterStatus}
+        onChange={setFilterStatus}
+        placeholder="Select Status"
+      />
+    </div>
 
-          <div className="w-[200px]">
-            <Select 
-              className="w-full rounded-lg shadow-sm"
-              options={balanceOptions}
-              value={filterBalance}
-              onChange={setFilterBalance}
-              placeholder="Select Range"
-            />
-          </div>
-        </div>
+    <div className="w-[220px]">
+      <Select 
+        className="w-full rounded-lg shadow-sm border border-violet-300 focus:ring-2 focus:ring-violet-500 focus:outline-none transition-all duration-300 ease-in-out"
+        options={balanceOptions}
+        value={filterBalance}
+        onChange={setFilterBalance}
+        placeholder="Select Range"
+      />
+    </div>
+  </div>
 
-        {/* Right Section: Search Input (aligned to the right) */}
-        <div className="flex items-center relative ml-auto">
-          <button 
-            className="text-gray-500 cursor-pointer p-2"
-            onClick={() => setIsSearchVisible(!isSearchVisible)}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="h-6 w-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197M15.803 15.803A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607z" />
-            </svg>
-          </button>
+  {/* Right Section: Search Input (aligned to the right) */}
+  <div className="flex items-center ml-auto">
+    <button 
+      className="text-gray-500 cursor-pointer p-2"
+      onClick={() => setIsSearchVisible(!isSearchVisible)}
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="h-6 w-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197M15.803 15.803A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607z" />
+      </svg>
+    </button>
 
-          {isSearchVisible && (
-            <input 
-              type="text" 
-              placeholder="Search by Client ID or Name..." 
-              className="ml-2 border-none outline-none bg-transparent w-[300px] text-gray-700 rounded-lg"
-              value={searchTerm} 
-              onChange={(e) => setSearchTerm(e.target.value)} 
-              autoFocus 
-            />
-          )}
-        </div>
-      </div>
+    {isSearchVisible && (
+      <input 
+        type="text" 
+        placeholder="Search by name..." 
+        className="ml-2 border-none outline-none bg-transparent w-[300px] text-gray-700 rounded-lg"
+        value={searchTerm} 
+        onChange={(e) => setSearchTerm(e.target.value)} 
+        autoFocus 
+      />
+    )}
+  </div>
+</div>
+
 
       {/* Unified Client Cards with Square Photo on the Left */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

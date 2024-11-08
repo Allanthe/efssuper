@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { FaFlag, FaEnvelope, FaPhoneAlt, FaDollarSign, FaMapMarkedAlt, FaFileAlt, FaCalendarAlt, FaEye, FaCheckCircle, FaTimesCircle, FaSpinner, FaTimes } from 'react-icons/fa';
+import { FaFlag,FaSearch, FaEnvelope, FaPhoneAlt, FaDollarSign, FaMapMarkedAlt, FaFileAlt, FaCalendarAlt, FaEye, FaCheckCircle, FaTimesCircle, FaSpinner, FaTimes } from 'react-icons/fa';
 import Select from 'react-select';
 
 const EnterpriseKyc = () => {
@@ -82,31 +82,43 @@ const EnterpriseKyc = () => {
       )}
 
       {/* Filters */}
+      
+
       <div className="mb-4 flex items-center gap-4 rounded-lg bg-white p-4 shadow-md">
-        <Select
-          value={{ value: statusFilter, label: statusFilter || 'All Status' }}
-          onChange={(option) => setStatusFilter(option.value)}
-          options={[
-            { value: '', label: 'All Status' },
-            { value: 'Active', label: 'Active' },
-            { value: 'Inactive', label: 'Inactive' },
-            { value: 'Approved', label: 'Approved' },
-            { value: 'Rejected', label: 'Rejected' },
-          ]}
-          className="w-1/6 border-r-amber-300 rounded-lg"
-        />
+  {/* Status Filter */}
+  <div className="w-full sm:w-[200px]">
+    <Select
+      value={{ value: statusFilter, label: statusFilter || 'All Status' }}
+      onChange={(option) => setStatusFilter(option.value)}
+      options={[
+        { value: '', label: 'All Status' },
+        { value: 'Active', label: 'Active' },
+        { value: 'Inactive', label: 'Inactive' },
+        { value: 'Approved', label: 'Approved' },
+        { value: 'Rejected', label: 'Rejected' },
+      ]}
+      className="w-full rounded-lg shadow-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-violet-500"
+    />
+  </div>
 
-        <div className="relative w-1/6">
-          <input
-            type="text"
-            placeholder="Search by Name"
-            value={nameFilter}
-            onChange={(e) => setNameFilter(e.target.value)}
-            className="p-2 border rounded-lg pl-10"
-          />
-        </div>
-      </div>
+  {/* Optional Separator */}
+  <div className="hidden sm:block w-px bg-gray-300 h-10 mx-4" />
 
+  {/* Name Filter (Search Bar) */}
+  <div className="relative w-full sm:w-[200px] ml-auto">
+    <input
+      type="text"
+      placeholder="Search by name"
+      value={nameFilter}
+      onChange={(e) => setNameFilter(e.target.value)}
+      className="w-full p-2 pl-10 pr-4 bg-transparent focus:outline-none focus:ring-0 text-gray-600"
+    />
+    {/* Search Icon */}
+    <FaSearch
+      className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+    />
+  </div>
+</div>
       {/* Enterprise Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {sortedEnterprises.length > 0 ? (
